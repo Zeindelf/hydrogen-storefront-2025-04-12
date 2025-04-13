@@ -98,8 +98,6 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({context}: LoaderFunctionArgs) {
-  const {storefront} = context;
-
   const [weaverseTheme] = await Promise.all([
     // Add other queries here, so that they are loaded in parallel
     context.weaverse.loadThemeSettings(),
