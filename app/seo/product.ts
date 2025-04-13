@@ -11,7 +11,6 @@ import {head} from 'ramda';
 import type {EnhancedMenu} from '~/utils/shopify';
 
 import {DEFAULT_IMAGE_OBJECT} from '~/config/constants';
-import {parseSpecifications} from '~/pages/product';
 import {truncate} from '~/utils/helpers';
 import {
   createCheckoutUrl,
@@ -67,7 +66,6 @@ const createProductSchema = ({
   const selectedVariant =
     product?.selectedOrFirstAvailableVariant ?? head(variants || []);
 
-  const {specifications} = parseSpecifications(product?.specifications);
   const category = listItems
     .filter((item) => item.title !== product?.title)
     .map((item) => item.title)
@@ -157,7 +155,7 @@ const createProductSchema = ({
     // additionalProperty,
     audience: {
       '@type': 'PeopleAudience',
-      suggestedGender: specifications?.genre,
+      suggestedGender: '',
     },
     brand: {
       '@type': 'Brand',
