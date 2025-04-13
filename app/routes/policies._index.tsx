@@ -38,7 +38,7 @@ export default function Policies() {
       <Breadcrumb listItems={listItems} />
 
       <section className="container">
-        <h1 variant="page">Políticas</h1>
+        <h1>Políticas</h1>
 
         <div>
           {policies.map((policy) => {

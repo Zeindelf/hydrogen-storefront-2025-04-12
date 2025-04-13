@@ -161,7 +161,7 @@ const CartLayout = ({
 
   return (
     <section className="container">
-      <h1 variant="page">Meu carrinho</h1>
+      <h1>Meu carrinho</h1>
 
       <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
         <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
