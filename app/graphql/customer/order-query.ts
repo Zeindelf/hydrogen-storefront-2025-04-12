@@ -17,20 +17,11 @@ export const CUSTOMER_ORDER_QUERY = `#graphql
   }
   fragment OrderLineItemFull on LineItem {
     id
+    sku
     title
     quantity
+    giftCard
     price {
-      ...OrderMoney
-    }
-    discountAllocations {
-      allocatedAmount {
-        ...OrderMoney
-      }
-      discountApplication {
-        ...DiscountApplication
-      }
-    }
-    totalDiscount {
       ...OrderMoney
     }
     image {
@@ -40,16 +31,46 @@ export const CUSTOMER_ORDER_QUERY = `#graphql
       id
       width
     }
+    variantId
     variantTitle
+    variantOptions {
+      name
+      value
+    }
+    discountAllocations {
+      allocatedAmount {
+        ...OrderMoney
+      }
+      discountApplication {
+        ...DiscountApplication
+      }
+    }
+    currentTotalPrice {
+      ...OrderMoney
+    }
+    totalDiscount {
+      ...OrderMoney
+    }
+    totalPrice {
+      ...OrderMoney
+    }
   }
   fragment Order on Order {
     id
     name
     statusPageUrl
     processedAt
-    fulfillments(first: 1) {
+    fulfillments(first: 250) {
       nodes {
+        createdAt
         status
+        isPickedUp
+        latestShipmentStatus
+        trackingInformation {
+          company
+          number
+          url
+        }
       }
     }
     totalTax {

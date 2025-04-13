@@ -1,0 +1,28 @@
+# REST Admin API [https://shopify.dev/docs/api/admin-rest]
+# Legacy API since October 1, 2024
+
+# Main Access
+@SHOPIFY_STOREFRONT_API_VERSION=2025-04
+@SHOPIFY_STORE_DOMAIN=mystore
+@PRIVATE_ACCESS_TOKEN=shpat_abc
+@HOST = https://{{SHOPIFY_STORE_DOMAIN}}.myshopify.com
+@ADMIN_URL = {{HOST}}/admin/api/{{SHOPIFY_STOREFRONT_API_VERSION}}
+
+# Resources IDs
+@COLLECTION_ID=123
+@PRODUCT_ID=123
+
+# Request URLs Example
+@SHOP = {{ADMIN_URL}}/shop.json
+@POLICIES = {{ADMIN_URL}}/policies.json
+@COLLECTION = {{ADMIN_URL}}/collections/{{COLLECTION_ID}}.json
+@PRODUCTS = {{ADMIN_URL}}/collections/{{COLLECTION_ID}}/products.json
+@PRODUCT = {{ADMIN_URL}}/products/{{PRODUCT_ID}}.json
+@PRODUCT_COUNT = {{ADMIN_URL}}/products/count.json
+
+### Requests
+GET {{SHOP}}
+Content-Type: application/json
+X-Shopify-Access-Token: {{PRIVATE_ACCESS_TOKEN}}
+
+### ...and so on
