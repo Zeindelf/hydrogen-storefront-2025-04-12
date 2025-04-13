@@ -1,11 +1,9 @@
 import type {MetaFunction} from '@remix-run/react';
+import type {SeoConfig} from '@shopify/hydrogen';
 import type {LoaderFunctionArgs} from '@shopify/remix-oxygen';
 
+import {getSeoMetaFromMatches, mergeMeta} from '~/seo/meta';
 import {WeaverseContent} from '~/weaverse';
-
-export const meta: MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
-};
 
 export async function loader(args: LoaderFunctionArgs) {
   const deferredData = loadDeferredData(args);
@@ -15,11 +13,19 @@ export async function loader(args: LoaderFunctionArgs) {
 }
 
 async function loadCriticalData({context}: LoaderFunctionArgs) {
+  const {shopify, weaverse} = context;
+
   const [weaverseData] = await Promise.all([
-    context.weaverse.loadPage({type: 'INDEX'}),
+    weaverse.loadPage({type: 'INDEX'}),
   ]);
 
+  const seo: SeoConfig = {
+    title: shopify.name,
+    titleTemplate: '%s | Shop short description',
+  };
+
   return {
+    seo,
     weaverseData,
   };
 }
@@ -27,6 +33,10 @@ async function loadCriticalData({context}: LoaderFunctionArgs) {
 function loadDeferredData(_: LoaderFunctionArgs) {
   return {};
 }
+
+export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
+  getSeoMetaFromMatches(matches),
+);
 
 export default function Homepage() {
   return <WeaverseContent />;
