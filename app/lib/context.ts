@@ -1,7 +1,9 @@
 import {createHydrogenContext} from '@shopify/hydrogen';
-import {AppSession} from '~/lib/session';
+
 import {CART_QUERY_FRAGMENT} from '~/lib/fragments';
 import {getLocaleFromRequest} from '~/lib/i18n';
+import {AppSession} from '~/lib/session';
+import {createWeaverseClient} from '~/weaverse/weaverse.server';
 
 /**
  * The context implementation is separate from server.ts
@@ -25,20 +27,31 @@ export async function createAppLoadContext(
     AppSession.init(request, [env.SESSION_SECRET]),
   ]);
 
+  const i18n = getLocaleFromRequest(request);
+
   const hydrogenContext = createHydrogenContext({
-    env,
-    request,
     cache,
-    waitUntil,
-    session,
-    i18n: getLocaleFromRequest(request),
     cart: {
       queryFragment: CART_QUERY_FRAGMENT,
     },
+    env,
+    i18n,
+    request,
+    session,
+    waitUntil,
+  });
+
+  const weaverse = createWeaverseClient({
+    ...hydrogenContext,
+    cache,
+    env,
+    request,
+    waitUntil,
   });
 
   return {
     ...hydrogenContext,
     // declare additional Remix loader context
+    weaverse,
   };
 }

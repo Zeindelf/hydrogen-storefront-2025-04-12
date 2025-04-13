@@ -1,11 +1,11 @@
 import type {I18nBase} from '@shopify/hydrogen';
 
 export function getLocaleFromRequest(request: Request): I18nBase {
-  const defaultLocale: I18nBase = {language: 'EN', country: 'US'};
+  const defaultLocale: I18nBase = {country: 'BR', language: 'PT'};
   const supportedLocales = {
+    DE: 'DE',
     ES: 'ES',
     FR: 'FR',
-    DE: 'DE',
     JP: 'JA',
   } as Record<I18nBase['country'], I18nBase['language']>;
 
@@ -16,6 +16,6 @@ export function getLocaleFromRequest(request: Request): I18nBase {
     ?.toUpperCase() as keyof typeof supportedLocales;
 
   return domain && supportedLocales[domain]
-    ? {language: supportedLocales[domain], country: domain}
+    ? {country: domain, language: supportedLocales[domain]}
     : defaultLocale;
 }

@@ -20,6 +20,8 @@ declare global {
 
   interface Env extends HydrogenEnv {
     // declare additional Env parameter use in the fetch handler and Remix loader context here
+    WEAVERSE_PROJECT_ID: string
+    WEAVERSE_API_KEY: string
   }
 }
 
