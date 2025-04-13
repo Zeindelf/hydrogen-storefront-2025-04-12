@@ -9,7 +9,7 @@ import type {CSSProperties} from 'react';
 import {cva} from 'class-variance-authority';
 import {forwardRef} from 'react';
 
-import {cn} from '~/utils/cn';
+import {cn} from '~/utils/helpers';
 
 const fontSizeVariants = cva('', {
   variants: {

@@ -4,7 +4,9 @@ import {createRequestHandler} from '@shopify/remix-oxygen';
 // @ts-ignore
 import * as remixBuild from 'virtual:remix/server-build';
 
-import {createAppLoadContext} from '~/lib/context';
+import {createAppLoadContext} from '~/core/context.server';
+
+// import {createAppLoadContext} from '~/lib/context';
 
 /**
  * Export a fetch handler in module format.

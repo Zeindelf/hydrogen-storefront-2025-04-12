@@ -14,7 +14,6 @@ import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {withWeaverse} from '@weaverse/hydrogen';
 
 import favicon from '~/assets/favicon.svg';
-import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 
 import tailwindCss from './styles/tailwind.css?url';
 
@@ -101,18 +100,12 @@ export async function loader(args: LoaderFunctionArgs) {
 async function loadCriticalData({context}: LoaderFunctionArgs) {
   const {storefront} = context;
 
-  const [header, weaverseTheme] = await Promise.all([
-    storefront.query(HEADER_QUERY, {
-      cache: storefront.CacheLong(),
-      variables: {
-        headerMenuHandle: 'main-menu', // Adjust to your header menu handle
-      },
-    }),
+  const [weaverseTheme] = await Promise.all([
     // Add other queries here, so that they are loaded in parallel
     context.weaverse.loadThemeSettings(),
   ]);
 
-  return {header, weaverseTheme};
+  return {weaverseTheme};
 }
 
 /**
@@ -121,24 +114,10 @@ async function loadCriticalData({context}: LoaderFunctionArgs) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  */
 function loadDeferredData({context}: LoaderFunctionArgs) {
-  const {cart, customerAccount, storefront} = context;
+  const {cart, customerAccount} = context;
 
-  // defer the footer query (below the fold)
-  const footer = storefront
-    .query(FOOTER_QUERY, {
-      cache: storefront.CacheLong(),
-      variables: {
-        footerMenuHandle: 'footer', // Adjust to your footer menu handle
-      },
-    })
-    .catch((error) => {
-      // Log query errors, but don't throw them so the page can still render
-      console.error(error);
-      return null;
-    });
   return {
     cart: cart.get(),
-    footer,
     isLoggedIn: customerAccount.isLoggedIn(),
   };
 }

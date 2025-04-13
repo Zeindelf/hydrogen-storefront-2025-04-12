@@ -80,59 +80,6 @@ export const LOCATION_QUERY = `#graphql
   }
 ` as const;
 
-export const STORE_QUERY = `#graphql
-  query StoreContent {
-    store: metaobject(handle: {type: "store", handle: "store"}) {
-      id
-      type
-      name: field(key: "name") {
-        ...MetaobjectField
-      }
-      description: field(key: "description") {
-        ...MetaobjectField
-      }
-    }
-  }
-  ${METAOBJECT_FIELD_FRAGMENT}
-  ${MEDIA_FRAGMENT}
-  ${GENERIC_FILE_FRAGMENT}
-` as const;
-
-export const FOOTER_QUERY = `#graphql
-  query FooterContent {
-    footer: metaobject(handle: {type: "footer", handle: "footer"}) {
-      id
-      type
-      name: field(key: "name") {
-        ...MetaobjectField
-      }
-      description: field(key: "description") {
-        ...MetaobjectField
-      }
-      copyright: field(key: "copyright") {
-        ...MetaobjectField
-      }
-      payments: field(key: "payments") {
-        ...MetaobjectField
-      }
-      socialMedia: field(key: "social_media") {
-        references(first: 250) {
-          nodes {
-            ... on Metaobject {
-              fields {
-                ...MetaobjectField
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${METAOBJECT_FIELD_FRAGMENT}
-  ${MEDIA_FRAGMENT}
-  ${GENERIC_FILE_FRAGMENT}
-` as const;
-
 export const MENU_QUERY = `#graphql
   query Menu(
     $handle: String!

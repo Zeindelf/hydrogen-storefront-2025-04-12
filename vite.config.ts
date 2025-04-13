@@ -17,7 +17,7 @@ declare module '@remix-run/server-runtime' {
 // and the page does not load. This can be solved but only if the optimize deps is done ahead of time, which seems to require
 // optimizeDeps and ssr.optimizeDeps.
 const optimizeDeps: DepOptimizationOptions = {
-  include: [],
+  include: ['query-string', 'social-links'],
 };
 
 export default defineConfig({

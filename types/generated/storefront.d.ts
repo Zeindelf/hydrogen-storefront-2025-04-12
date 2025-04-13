@@ -1701,461 +1701,6 @@ export type LocationQuery = {
   };
 };
 
-export type StoreContentQueryVariables = StorefrontAPI.Exact<{
-  [key: string]: never;
-}>;
-
-export type StoreContentQuery = {
-  store?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Metaobject, 'id' | 'type'> & {
-      name?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-      description?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-    }
-  >;
-};
-
-export type FooterContentQueryVariables = StorefrontAPI.Exact<{
-  [key: string]: never;
-}>;
-
-export type FooterContentQuery = {
-  footer?: StorefrontAPI.Maybe<
-    Pick<StorefrontAPI.Metaobject, 'id' | 'type'> & {
-      name?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-      description?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-      copyright?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-      payments?: StorefrontAPI.Maybe<
-        Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-          reference?: StorefrontAPI.Maybe<
-            | Pick<
-                StorefrontAPI.GenericFile,
-                'id' | 'url' | 'mimeType' | 'originalFileSize'
-              >
-            | ({__typename: 'MediaImage'} & Pick<
-                StorefrontAPI.MediaImage,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  image?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url' | 'width' | 'height'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Model3d'} & Pick<
-                StorefrontAPI.Model3d,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'Model3dSource'} & Pick<
-                      StorefrontAPI.Model3dSource,
-                      'format' | 'filesize' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-            | ({__typename: 'Video'} & Pick<
-                StorefrontAPI.Video,
-                'id' | 'alt' | 'mediaContentType'
-              > & {
-                  sources: Array<
-                    {__typename: 'VideoSource'} & Pick<
-                      StorefrontAPI.VideoSource,
-                      'format' | 'mimeType' | 'url'
-                    >
-                  >;
-                  previewImage?: StorefrontAPI.Maybe<
-                    {__typename: 'Image'} & Pick<
-                      StorefrontAPI.Image,
-                      'altText' | 'url'
-                    >
-                  >;
-                })
-          >;
-        }
-      >;
-      socialMedia?: StorefrontAPI.Maybe<{
-        references?: StorefrontAPI.Maybe<{
-          nodes: Array<{
-            fields: Array<
-              Pick<StorefrontAPI.MetaobjectField, 'key' | 'type' | 'value'> & {
-                reference?: StorefrontAPI.Maybe<
-                  | Pick<
-                      StorefrontAPI.GenericFile,
-                      'id' | 'url' | 'mimeType' | 'originalFileSize'
-                    >
-                  | ({__typename: 'MediaImage'} & Pick<
-                      StorefrontAPI.MediaImage,
-                      'id' | 'alt' | 'mediaContentType'
-                    > & {
-                        image?: StorefrontAPI.Maybe<
-                          {__typename: 'Image'} & Pick<
-                            StorefrontAPI.Image,
-                            'altText' | 'url' | 'width' | 'height'
-                          >
-                        >;
-                        previewImage?: StorefrontAPI.Maybe<
-                          {__typename: 'Image'} & Pick<
-                            StorefrontAPI.Image,
-                            'altText' | 'url'
-                          >
-                        >;
-                      })
-                  | ({__typename: 'Model3d'} & Pick<
-                      StorefrontAPI.Model3d,
-                      'id' | 'alt' | 'mediaContentType'
-                    > & {
-                        sources: Array<
-                          {__typename: 'Model3dSource'} & Pick<
-                            StorefrontAPI.Model3dSource,
-                            'format' | 'filesize' | 'mimeType' | 'url'
-                          >
-                        >;
-                        previewImage?: StorefrontAPI.Maybe<
-                          {__typename: 'Image'} & Pick<
-                            StorefrontAPI.Image,
-                            'altText' | 'url'
-                          >
-                        >;
-                      })
-                  | ({__typename: 'Video'} & Pick<
-                      StorefrontAPI.Video,
-                      'id' | 'alt' | 'mediaContentType'
-                    > & {
-                        sources: Array<
-                          {__typename: 'VideoSource'} & Pick<
-                            StorefrontAPI.VideoSource,
-                            'format' | 'mimeType' | 'url'
-                          >
-                        >;
-                        previewImage?: StorefrontAPI.Maybe<
-                          {__typename: 'Image'} & Pick<
-                            StorefrontAPI.Image,
-                            'altText' | 'url'
-                          >
-                        >;
-                      })
-                >;
-              }
-            >;
-          }>;
-        }>;
-      }>;
-    }
-  >;
-};
-
 export type MenuQueryVariables = StorefrontAPI.Exact<{
   handle: StorefrontAPI.Scalars['String']['input'];
   country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
@@ -3060,6 +2605,265 @@ export type AuthorInfoQuery = {
   }>;
 };
 
+export type HealthShopQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type HealthShopQuery = {shop: Pick<StorefrontAPI.Shop, 'name'>};
+
+export type StoreRobotsQueryVariables = StorefrontAPI.Exact<{
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+}>;
+
+export type StoreRobotsQuery = {shop: Pick<StorefrontAPI.Shop, 'id'>};
+
+export type SitemapMetaobjectsQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapMetaobjectsQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<
+            StorefrontAPI.SitemapResourceMetaobject,
+            'type' | 'handle' | 'updatedAt'
+          >
+      >;
+    }>;
+  };
+};
+
+export type SitemapArticlesQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapArticlesQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
+export type SearchArticleByHandleQueryVariables = StorefrontAPI.Exact<{
+  query?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['String']['input']>;
+}>;
+
+export type SearchArticleByHandleQuery = {
+  articles: {
+    nodes: Array<
+      Pick<StorefrontAPI.Article, 'handle' | 'title'> & {
+        blog: Pick<StorefrontAPI.Blog, 'handle'>;
+        image?: StorefrontAPI.Maybe<{
+          alt: StorefrontAPI.Image['altText'];
+          filepath: StorefrontAPI.Image['url'];
+        }>;
+      }
+    >;
+  };
+};
+
+export type SitemapBlogsQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapBlogsQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
+export type SearchBlogsByHandleQueryVariables = StorefrontAPI.Exact<{
+  query: StorefrontAPI.Scalars['String']['input'];
+  first?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['Int']['input']>;
+}>;
+
+export type SearchBlogsByHandleQuery = {
+  blogs: {
+    nodes: Array<
+      Pick<StorefrontAPI.Blog, 'handle' | 'title'> & {
+        blogImage?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.Metafield, 'id' | 'key' | 'type' | 'value'> & {
+            reference?: StorefrontAPI.Maybe<
+              | Pick<
+                  StorefrontAPI.GenericFile,
+                  'id' | 'url' | 'mimeType' | 'originalFileSize'
+                >
+              | ({__typename: 'MediaImage'} & Pick<
+                  StorefrontAPI.MediaImage,
+                  'id' | 'alt' | 'mediaContentType'
+                > & {
+                    image?: StorefrontAPI.Maybe<
+                      {__typename: 'Image'} & Pick<
+                        StorefrontAPI.Image,
+                        'altText' | 'url' | 'width' | 'height'
+                      >
+                    >;
+                    previewImage?: StorefrontAPI.Maybe<
+                      {__typename: 'Image'} & Pick<
+                        StorefrontAPI.Image,
+                        'altText' | 'url'
+                      >
+                    >;
+                  })
+              | ({__typename: 'Model3d'} & Pick<
+                  StorefrontAPI.Model3d,
+                  'id' | 'alt' | 'mediaContentType'
+                > & {
+                    sources: Array<
+                      {__typename: 'Model3dSource'} & Pick<
+                        StorefrontAPI.Model3dSource,
+                        'format' | 'filesize' | 'mimeType' | 'url'
+                      >
+                    >;
+                    previewImage?: StorefrontAPI.Maybe<
+                      {__typename: 'Image'} & Pick<
+                        StorefrontAPI.Image,
+                        'altText' | 'url'
+                      >
+                    >;
+                  })
+              | ({__typename: 'Video'} & Pick<
+                  StorefrontAPI.Video,
+                  'id' | 'alt' | 'mediaContentType'
+                > & {
+                    sources: Array<
+                      {__typename: 'VideoSource'} & Pick<
+                        StorefrontAPI.VideoSource,
+                        'format' | 'mimeType' | 'url'
+                      >
+                    >;
+                    previewImage?: StorefrontAPI.Maybe<
+                      {__typename: 'Image'} & Pick<
+                        StorefrontAPI.Image,
+                        'altText' | 'url'
+                      >
+                    >;
+                  })
+            >;
+          }
+        >;
+      }
+    >;
+  };
+};
+
+export type AuthorsInfoSitemapQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type AuthorsInfoSitemapQuery = {
+  authors?: StorefrontAPI.Maybe<{
+    articles: {
+      nodes: Array<{
+        authorV2?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.ArticleAuthor, 'name' | 'email'>
+        >;
+      }>;
+    };
+  }>;
+};
+
+export type SitemapCollectionsQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapCollectionsQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
+export type GetCollectionsByHandleQueryVariables = StorefrontAPI.Exact<{
+  query?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['String']['input']>;
+  first?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['Int']['input']>;
+}>;
+
+export type GetCollectionsByHandleQuery = {
+  collections: {
+    nodes: Array<
+      Pick<StorefrontAPI.Collection, 'title' | 'handle'> & {
+        image?: StorefrontAPI.Maybe<{
+          alt: StorefrontAPI.Image['altText'];
+          filepath: StorefrontAPI.Image['url'];
+        }>;
+      }
+    >;
+  };
+};
+
+export type SitemapPagesQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapPagesQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
+export type SearchPageByHandleQueryVariables = StorefrontAPI.Exact<{
+  query?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['String']['input']>;
+}>;
+
+export type SearchPageByHandleQuery = {
+  pages: {nodes: Array<Pick<StorefrontAPI.Page, 'handle' | 'title'>>};
+};
+
+export type SitemapProductsQueryVariables = StorefrontAPI.Exact<{
+  page: StorefrontAPI.Scalars['Int']['input'];
+}>;
+
+export type SitemapProductsQuery = {
+  sitemap: {
+    resources?: StorefrontAPI.Maybe<{
+      items: Array<
+        | Pick<StorefrontAPI.SitemapResource, 'handle' | 'updatedAt'>
+        | Pick<StorefrontAPI.SitemapResourceMetaobject, 'handle' | 'updatedAt'>
+      >;
+    }>;
+  };
+};
+
+export type SearchProductsByHandleQueryVariables = StorefrontAPI.Exact<{
+  query: StorefrontAPI.Scalars['String']['input'];
+  first?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['Int']['input']>;
+}>;
+
+export type SearchProductsByHandleQuery = {
+  products: {
+    nodes: Array<
+      Pick<StorefrontAPI.Product, 'handle' | 'title'> & {
+        image?: StorefrontAPI.Maybe<{
+          alt: StorefrontAPI.Image['altText'];
+          filepath: StorefrontAPI.Image['url'];
+        }>;
+      }
+    >;
+  };
+};
+
 interface GeneratedQueryTypes {
   '#graphql\n  fragment ShopMediaImage on MediaImage {\n    id\n    image {\n      altText\n      height\n      id\n      url\n      width\n    }\n  }\n\n  query Shop(\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    shop {\n      id\n      name\n      description\n      primaryDomain {\n        host\n        url\n      }\n      brand {\n        shortDescription\n        slogan\n        logo {\n          ...ShopMediaImage\n        }\n        coverImage {\n          ...ShopMediaImage\n        }\n      }\n      paymentSettings {\n        countryCode\n        currencyCode\n      }\n    }\n  }\n': {
     return: ShopQuery;
@@ -3068,14 +2872,6 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Location(\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    localization {\n      country {\n        currency {\n          isoCode\n          name\n          symbol\n        }\n        isoCode\n        name\n        unitSystem\n      }\n      language {\n        endonymName\n        isoCode\n        name\n      }\n      market {\n        handle\n        id\n      }\n    }\n  }\n': {
     return: LocationQuery;
     variables: LocationQueryVariables;
-  };
-  '#graphql\n  query StoreContent {\n    store: metaobject(handle: {type: "store", handle: "store"}) {\n      id\n      type\n      name: field(key: "name") {\n        ...MetaobjectField\n      }\n      description: field(key: "description") {\n        ...MetaobjectField\n      }\n    }\n  }\n  #graphql\n  fragment MetaobjectField on MetaobjectField {\n    key\n    type\n    value\n    reference {\n      ...Media\n      ...GenericFile\n    }\n  }\n\n  #graphql\n  fragment Media on Media {\n    __typename\n    alt\n    mediaContentType\n    previewImage {\n      __typename\n      altText\n      url\n    }\n    ... on MediaImage {\n      __typename\n      id\n      image {\n        __typename\n        altText\n        url\n        width\n        height\n      }\n    }\n    ... on Video {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        mimeType\n        url\n      }\n    }\n    ... on Model3d {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        filesize\n        mimeType\n        url\n      }\n    }\n    ... on ExternalVideo {\n      __typename\n      alt\n      embedUrl\n      host\n      id\n      originUrl\n      previewImage {\n        altText\n        height\n        id\n        url\n        width\n      }\n    }\n  }\n\n  #graphql\n  fragment GenericFile on GenericFile {\n    ... on GenericFile {\n      id\n      url\n      mimeType\n      originalFileSize\n    }\n  }\n\n': {
-    return: StoreContentQuery;
-    variables: StoreContentQueryVariables;
-  };
-  '#graphql\n  query FooterContent {\n    footer: metaobject(handle: {type: "footer", handle: "footer"}) {\n      id\n      type\n      name: field(key: "name") {\n        ...MetaobjectField\n      }\n      description: field(key: "description") {\n        ...MetaobjectField\n      }\n      copyright: field(key: "copyright") {\n        ...MetaobjectField\n      }\n      payments: field(key: "payments") {\n        ...MetaobjectField\n      }\n      socialMedia: field(key: "social_media") {\n        references(first: 250) {\n          nodes {\n            ... on Metaobject {\n              fields {\n                ...MetaobjectField\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n  #graphql\n  fragment MetaobjectField on MetaobjectField {\n    key\n    type\n    value\n    reference {\n      ...Media\n      ...GenericFile\n    }\n  }\n\n  #graphql\n  fragment Media on Media {\n    __typename\n    alt\n    mediaContentType\n    previewImage {\n      __typename\n      altText\n      url\n    }\n    ... on MediaImage {\n      __typename\n      id\n      image {\n        __typename\n        altText\n        url\n        width\n        height\n      }\n    }\n    ... on Video {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        mimeType\n        url\n      }\n    }\n    ... on Model3d {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        filesize\n        mimeType\n        url\n      }\n    }\n    ... on ExternalVideo {\n      __typename\n      alt\n      embedUrl\n      host\n      id\n      originUrl\n      previewImage {\n        altText\n        height\n        id\n        url\n        width\n      }\n    }\n  }\n\n  #graphql\n  fragment GenericFile on GenericFile {\n    ... on GenericFile {\n      id\n      url\n      mimeType\n      originalFileSize\n    }\n  }\n\n': {
-    return: FooterContentQuery;
-    variables: FooterContentQueryVariables;
   };
   '#graphql\n  query Menu(\n    $handle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    menu(\n      handle: $handle\n    ) {\n      ...Menu\n    }\n  }\n  #graphql\n  fragment Menu on Menu {\n    __typename\n    id\n    title\n    items {\n      ...ParentMenuItem\n    }\n  }\n\n  fragment ParentMenuItem on MenuItem {\n    ...MenuItem\n    items {\n      __typename\n      ...ChildMenuItem\n    }\n  }\n\n  fragment ChildMenuItem on MenuItem {\n    ...MenuItem\n    items {\n      __typename\n      ...SubChildMenuItem\n    }\n  }\n\n  fragment SubChildMenuItem on MenuItem {\n    ...MenuItem\n  }\n\n  fragment MenuItem on MenuItem {\n    __typename\n    id\n    title\n    type\n    url\n    tags\n    resourceId\n    resource {\n      ...MenuItemResource\n    }\n  }\n\n  fragment MenuImage on Image {\n    altText\n    height\n    id\n    url\n    width\n    __typename\n  }\n\n  fragment MenuCollection on Collection {\n    __typename\n    id\n    title\n    handle\n    image {\n      ...MenuImage\n    }\n  }\n\n  fragment MenuProduct on Product {\n    __typename\n    id\n    title\n    handle\n    images(first: 1) {\n      nodes {\n        ...MenuImage\n      }\n    }\n  }\n\n  fragment MenuBlog on Blog {\n    __typename\n    id\n    title\n    handle\n    articles(first: 1) {\n      nodes {\n        ...MenuArticle\n      }\n    }\n  }\n\n  fragment MenuArticle on Article {\n    __typename\n    id\n    title\n    handle\n    blog {\n      handle\n    }\n    image {\n      ...MenuImage\n    }\n  }\n\n  fragment MenuPage on Page {\n    __typename\n    id\n    title\n    handle\n  }\n\n  fragment MenuShopPolicy on ShopPolicy {\n    __typename\n    id\n    title\n    handle\n  }\n\n  fragment MenuItemResource on MenuItemResource {\n    ... on Collection {\n      ...MenuCollection\n    }\n    ... on Product {\n      ...MenuProduct\n    }\n    ... on Blog {\n      ...MenuBlog\n    }\n    ... on Article {\n      ...MenuArticle\n    }\n    ... on Page {\n      ...MenuPage\n    }\n    ... on ShopPolicy {\n      ...MenuShopPolicy\n    }\n  }\n\n': {
     return: MenuQuery;
@@ -3088,6 +2884,62 @@ interface GeneratedQueryTypes {
   '#graphql\n  fragment AuthorInfo on Metaobject {\n    jobTitle: field(key: "job_title") {\n      ...MetaobjectField\n    }\n    location: field(key: "location") {\n      ...MetaobjectField\n    }\n    shortDescription: field(key: "short_description") {\n      ...MetaobjectField\n    }\n  }\n\n  query AuthorInfo(\n    $authorHandle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    authorInfo: blog(handle: "author") {\n      articleByHandle(handle: $authorHandle) {\n        author: authorV2 {\n          ...ArticleAuthor\n        }\n        info: metafield(namespace: "author" key: "info") {\n          ...Metafield\n          reference {\n            ... on Metaobject {\n              type\n              ...AuthorInfo\n            }\n          }\n        }\n        socials: metafield(namespace: "author" key: "socials") {\n          ...Metafield\n          references(first: 250) {\n            nodes {\n              ... on Metaobject {\n                fields {\n                  ...MetaobjectField\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n  #graphql\n  fragment ArticleAuthor on ArticleAuthor {\n    name\n    email\n    firstName\n    lastName\n    bio\n  }\n\n  #graphql\n  fragment Metafield on Metafield {\n    id\n    key\n    type\n    value\n    reference {\n      ...Media\n      ...GenericFile\n    }\n  }\n\n  #graphql\n  fragment GenericFile on GenericFile {\n    ... on GenericFile {\n      id\n      url\n      mimeType\n      originalFileSize\n    }\n  }\n\n  #graphql\n  fragment Media on Media {\n    __typename\n    alt\n    mediaContentType\n    previewImage {\n      __typename\n      altText\n      url\n    }\n    ... on MediaImage {\n      __typename\n      id\n      image {\n        __typename\n        altText\n        url\n        width\n        height\n      }\n    }\n    ... on Video {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        mimeType\n        url\n      }\n    }\n    ... on Model3d {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        filesize\n        mimeType\n        url\n      }\n    }\n    ... on ExternalVideo {\n      __typename\n      alt\n      embedUrl\n      host\n      id\n      originUrl\n      previewImage {\n        altText\n        height\n        id\n        url\n        width\n      }\n    }\n  }\n\n  #graphql\n  fragment MetaobjectField on MetaobjectField {\n    key\n    type\n    value\n    reference {\n      ...Media\n      ...GenericFile\n    }\n  }\n\n': {
     return: AuthorInfoQuery;
     variables: AuthorInfoQueryVariables;
+  };
+  '#graphql\n  query HealthShop {\n    shop {\n      name\n    }\n  }\n': {
+    return: HealthShopQuery;
+    variables: HealthShopQueryVariables;
+  };
+  '#graphql\n  query StoreRobots(\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(country: $country, language: $language) {\n    shop {\n      id\n    }\n  }\n': {
+    return: StoreRobotsQuery;
+    variables: StoreRobotsQueryVariables;
+  };
+  '#graphql\n    query SitemapMetaobjects($page: Int!) {\n      sitemap(type: METAOBJECT) {\n        resources(page: $page) {\n          items {\n            handle\n            updatedAt\n            ... on SitemapResourceMetaobject {\n              type\n            }\n          }\n        }\n      }\n    }\n': {
+    return: SitemapMetaobjectsQuery;
+    variables: SitemapMetaobjectsQueryVariables;
+  };
+  '#graphql\n    query SitemapArticles($page: Int!) {\n      sitemap(type: ARTICLE) {\n        resources(page: $page) {\n          items {\n            handle\n            updatedAt\n          }\n        }\n      }\n    }\n': {
+    return: SitemapArticlesQuery;
+    variables: SitemapArticlesQueryVariables;
+  };
+  '#graphql\n  query SearchArticleByHandle($query: String) {\n    articles(\n      query: $query\n      first: 250\n    ) {\n      nodes {\n        handle\n        title\n        blog {\n          handle\n        }\n        image {\n          alt: altText\n          filepath: url\n        }\n      }\n    }\n  }\n': {
+    return: SearchArticleByHandleQuery;
+    variables: SearchArticleByHandleQueryVariables;
+  };
+  '#graphql\n  query SitemapBlogs($page: Int!) {\n    sitemap(type: BLOG) {\n      resources(page: $page) {\n        items {\n          handle\n          updatedAt\n        }\n      }\n    }\n  }\n': {
+    return: SitemapBlogsQuery;
+    variables: SitemapBlogsQueryVariables;
+  };
+  '#graphql\n  query SearchBlogsByHandle(\n    $query: String!\n    $first: Int = 250\n  ) {\n    blogs(\n      query: $query\n      first: $first\n    ) {\n      nodes {\n        handle\n        title\n        blogImage: metafield(namespace: "category", key: "image") {\n          ...Metafield\n        }\n      }\n    }\n  }\n  #graphql\n  fragment Metafield on Metafield {\n    id\n    key\n    type\n    value\n    reference {\n      ...Media\n      ...GenericFile\n    }\n  }\n\n  #graphql\n  fragment Media on Media {\n    __typename\n    alt\n    mediaContentType\n    previewImage {\n      __typename\n      altText\n      url\n    }\n    ... on MediaImage {\n      __typename\n      id\n      image {\n        __typename\n        altText\n        url\n        width\n        height\n      }\n    }\n    ... on Video {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        mimeType\n        url\n      }\n    }\n    ... on Model3d {\n      __typename\n      id\n      sources {\n        __typename\n        format\n        filesize\n        mimeType\n        url\n      }\n    }\n    ... on ExternalVideo {\n      __typename\n      alt\n      embedUrl\n      host\n      id\n      originUrl\n      previewImage {\n        altText\n        height\n        id\n        url\n        width\n      }\n    }\n  }\n\n  #graphql\n  fragment GenericFile on GenericFile {\n    ... on GenericFile {\n      id\n      url\n      mimeType\n      originalFileSize\n    }\n  }\n\n': {
+    return: SearchBlogsByHandleQuery;
+    variables: SearchBlogsByHandleQueryVariables;
+  };
+  '#graphql\n  query AuthorsInfoSitemap {\n    authors: blog(handle: "author") {\n      articles(first: 250) {\n        nodes {\n          authorV2 {\n            name\n            email\n          }\n        }\n      }\n    }\n  }\n': {
+    return: AuthorsInfoSitemapQuery;
+    variables: AuthorsInfoSitemapQueryVariables;
+  };
+  '#graphql\n    query SitemapCollections($page: Int!) {\n      sitemap(type: COLLECTION) {\n        resources(page: $page) {\n          items {\n            handle\n            updatedAt\n          }\n        }\n      }\n    }\n': {
+    return: SitemapCollectionsQuery;
+    variables: SitemapCollectionsQueryVariables;
+  };
+  '#graphql\n  query GetCollectionsByHandle(\n    $query: String\n    $first: Int = 250\n  ) {\n    collections(\n      query: $query\n      first: $first\n    ) {\n      nodes {\n        title\n        handle\n        image {\n          ...SitemapImage\n        }\n      }\n    }\n  }\n  #graphql\n  fragment SitemapImage on Image {\n    alt: altText\n    filepath: url\n  }\n\n': {
+    return: GetCollectionsByHandleQuery;
+    variables: GetCollectionsByHandleQueryVariables;
+  };
+  '#graphql\n    query SitemapPages($page: Int!) {\n      sitemap(type: PAGE) {\n        resources(page: $page) {\n          items {\n            handle\n            updatedAt\n          }\n        }\n      }\n    }\n': {
+    return: SitemapPagesQuery;
+    variables: SitemapPagesQueryVariables;
+  };
+  '#graphql\n  query SearchPageByHandle($query: String) {\n    pages(\n      query: $query\n      first: 250\n    ) {\n      nodes {\n        handle\n        title\n      }\n    }\n  }\n': {
+    return: SearchPageByHandleQuery;
+    variables: SearchPageByHandleQueryVariables;
+  };
+  '#graphql\n    query SitemapProducts($page: Int!) {\n      sitemap(type: PRODUCT) {\n        resources(page: $page) {\n          items {\n            handle\n            updatedAt\n          }\n        }\n      }\n    }\n': {
+    return: SitemapProductsQuery;
+    variables: SitemapProductsQueryVariables;
+  };
+  '#graphql\n  query SearchProductsByHandle(\n    $query: String!\n    $first: Int = 250\n  ) {\n    products(\n      query: $query\n      first: $first\n    ) {\n      nodes {\n        handle\n        title\n        image: featuredImage {\n          ...SitemapImage\n        }\n      }\n    }\n  }\n  #graphql\n  fragment SitemapImage on Image {\n    alt: altText\n    filepath: url\n  }\n\n': {
+    return: SearchProductsByHandleQuery;
+    variables: SearchProductsByHandleQueryVariables;
   };
 }
 

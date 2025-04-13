@@ -10,18 +10,18 @@ import type {
   HydrogenSessionData,
   HydrogenEnv,
 } from '@shopify/hydrogen';
-import type {createAppLoadContext} from '~/lib/context';
+import {createAppLoadContext} from '~/core/context.server';
+// import type {createAppLoadContext} from '~/lib/context';
 
 declare global {
-  /**
-   * A global `process` object is only available during build to access NODE_ENV.
-   */
-  const process: {env: {NODE_ENV: 'production' | 'development'}};
-
+  /** A global `process` object is only available during build to access NODE_ENV. */
   interface Env extends HydrogenEnv {
     // declare additional Env parameter use in the fetch handler and Remix loader context here
-    WEAVERSE_PROJECT_ID: string
-    WEAVERSE_API_KEY: string
+    NODE_ENV: 'development' | 'production';
+    PRIVATE_ACCESS_TOKEN: string
+    PUBLIC_CHECKOUT_DOMAIN: string;
+    PUBLIC_STOREFRONT_API_VERSION: string;
+    PUBLIC_STORE_ROOT: string;
   }
 }
 
