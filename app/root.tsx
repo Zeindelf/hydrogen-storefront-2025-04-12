@@ -1,3 +1,5 @@
+import type {SerializeFrom} from '@remix-run/server-runtime/dist/single-fetch';
+
 import {
   isRouteErrorResponse,
   Links,
@@ -6,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
   type ShouldRevalidateFunction,
+  useMatches,
   useRouteError,
   useRouteLoaderData,
 } from '@remix-run/react';
@@ -19,9 +22,12 @@ import tailwindCss from './styles/tailwind.css?url';
 
 export type RootLoader = typeof loader;
 
-/**
- * This is important to avoid re-fetching root queries on sub-navigations
- */
+export const useRootLoaderData = () => {
+  const [root] = useMatches();
+  return root?.data as SerializeFrom<typeof loader>;
+};
+
+/** This is important to avoid re-fetching root queries on sub-navigations */
 export const shouldRevalidate: ShouldRevalidateFunction = ({
   currentUrl,
   formMethod,
@@ -66,20 +72,16 @@ export function links() {
 }
 
 export async function loader(args: LoaderFunctionArgs) {
-  // Start fetching non-critical data without blocking time to first byte
   const deferredData = loadDeferredData(args);
-
-  // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  const {env, storefront} = args.context;
+  const {env, shopify, storefront} = args.context;
 
   return {
     ...deferredData,
     ...criticalData,
     consent: {
       checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
-      // localize the privacy banner
       country: args.context.storefront.i18n.country,
       language: args.context.storefront.i18n.language,
       storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
@@ -90,27 +92,18 @@ export async function loader(args: LoaderFunctionArgs) {
       publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
       storefront,
     }),
+    shopify,
   };
 }
 
-/**
- * Load data necessary for rendering content above the fold. This is the critical data
- * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
- */
 async function loadCriticalData({context}: LoaderFunctionArgs) {
   const [weaverseTheme] = await Promise.all([
-    // Add other queries here, so that they are loaded in parallel
     context.weaverse.loadThemeSettings(),
   ]);
 
   return {weaverseTheme};
 }
 
-/**
- * Load data for rendering content below the fold. This data is deferred and will be
- * fetched after the initial page load. If it's unavailable, the page should still 200.
- * Make sure to not throw any errors here, as it will cause the page to 500.
- */
 function loadDeferredData({context}: LoaderFunctionArgs) {
   const {cart, customerAccount} = context;
 

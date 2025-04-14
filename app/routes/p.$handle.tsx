@@ -21,10 +21,7 @@ import * as React from 'react';
 import {Breadcrumb} from '~/components/global/breadcrumb';
 import {SkipLink} from '~/components/resources/skip-link';
 import {
-  GENERIC_FILE_FRAGMENT,
   MEDIA_FRAGMENT,
-  METAFIELD_FRAGMENT,
-  METAOBJECT_FIELD_FRAGMENT,
   PRICE_RANGE_FRAGMENT,
   PRODUCT_ITEM_FRAGMENT,
   PRODUCT_VARIANT_FRAGMENT,
@@ -273,9 +270,6 @@ export const PRODUCT_QUERY = `#graphql
   ${PRODUCT_VARIANT_FRAGMENT}
   ${PRICE_RANGE_FRAGMENT}
   ${MEDIA_FRAGMENT}
-  ${GENERIC_FILE_FRAGMENT}
-  ${METAFIELD_FRAGMENT}
-  ${METAOBJECT_FIELD_FRAGMENT}
 ` as const;
 
 const GET_PRODUCTS_RECOMMENDATIONS = `#graphql
@@ -313,9 +307,6 @@ const GET_PRODUCTS_RECOMMENDATIONS = `#graphql
   ${PRODUCT_ITEM_FRAGMENT}
   ${PRICE_RANGE_FRAGMENT}
   ${PRODUCT_VARIANT_FRAGMENT}
-  ${METAOBJECT_FIELD_FRAGMENT}
-  ${GENERIC_FILE_FRAGMENT}
-  ${MEDIA_FRAGMENT}
 ` as const;
 
 const _GET_VARIANTS_QUERY = `#graphql
