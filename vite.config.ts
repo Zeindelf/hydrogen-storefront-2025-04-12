@@ -1,8 +1,10 @@
+import type {CustomFonts} from 'unplugin-fonts/types';
 import type {DepOptimizationOptions} from 'vite';
 
 import {vitePlugin as remix} from '@remix-run/dev';
 import {hydrogen} from '@shopify/hydrogen/vite';
 import {oxygen} from '@shopify/mini-oxygen/vite';
+import Unfonts from 'unplugin-fonts/vite';
 import {defineConfig} from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -12,12 +14,30 @@ declare module '@remix-run/server-runtime' {
   }
 }
 
+const customFonts: CustomFonts = {
+  display: 'swap',
+  families: [
+    {
+      local: 'Margem',
+      name: 'Margem',
+      src: 'app/assets/fonts/Margem*',
+    },
+  ],
+  injectTo: 'head-prepend',
+  preload: true,
+};
+
 // I'm seeing an issue specifically with media-chrome/dist/react/index.js
 // where the first time the dev server is loaded with no cache (delete node_modules/.vite) there is a React hooks error
 // and the page does not load. This can be solved but only if the optimize deps is done ahead of time, which seems to require
 // optimizeDeps and ssr.optimizeDeps.
 const optimizeDeps: DepOptimizationOptions = {
-  include: ['query-string', 'social-links'],
+  include: [
+    'crypto-js',
+    'query-string',
+    'social-links',
+    'remix-utils/csrf/server',
+  ],
 };
 
 export default defineConfig({
@@ -41,6 +61,7 @@ export default defineConfig({
       presets: [hydrogen.v3preset()],
     }),
     tsconfigPaths(),
+    Unfonts({custom: customFonts}),
   ],
   ssr: {
     /**

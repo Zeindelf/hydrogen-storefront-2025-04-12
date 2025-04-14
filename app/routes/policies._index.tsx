@@ -11,7 +11,14 @@ import {policiesSeo} from '~/seo/policies';
 import {notFound} from '~/utils/helpers';
 import {createPoliciesUrl} from '~/utils/shopify';
 
-export async function loader({context, request}: LoaderFunctionArgs) {
+export async function loader(args: LoaderFunctionArgs) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+}
+
+const loadCriticalData = async ({context, request}: LoaderFunctionArgs) => {
   const {shopify, storefront} = context;
 
   const data = await storefront.query<PoliciesQuery>(POLICIES_QUERY);
@@ -23,13 +30,15 @@ export async function loader({context, request}: LoaderFunctionArgs) {
   const {jsonLd, listItems, seo} = policiesSeo({request, shopify});
 
   return {jsonLd, listItems, policies, seo};
-}
+};
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),
 );
 
-export default function Policies() {
+export default function PoliciesRoute() {
   const {jsonLd, listItems, policies} = useLoaderData<typeof loader>();
 
   return (

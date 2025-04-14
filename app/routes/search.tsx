@@ -24,7 +24,14 @@ import {
   searchMessage,
 } from '~/utils/shopify';
 
-export const loader = async ({context, request}: LoaderFunctionArgs) => {
+export const loader = async (args: LoaderFunctionArgs) => {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+};
+
+const loadCriticalData = async ({context, request}: LoaderFunctionArgs) => {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const term = searchParams.get(SEARCH_QUERY_PARAM) || '';
@@ -53,6 +60,8 @@ export const loader = async ({context, request}: LoaderFunctionArgs) => {
     totalCount,
   };
 };
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

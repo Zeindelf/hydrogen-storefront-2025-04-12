@@ -33,7 +33,16 @@ const defaultFalsyParams = {
   termsOfService: false,
 };
 
-export async function loader({context, params, request}: LoaderFunctionArgs) {
+export async function loader(args: LoaderFunctionArgs) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+}
+
+const loadCriticalData = async (args: LoaderFunctionArgs) => {
+  const {context, params, request} = args;
+
   const {admin, shopify, storefront} = context;
   const policyName = params.handle?.replace(
     /-([a-z])/g,
@@ -66,13 +75,15 @@ export async function loader({context, params, request}: LoaderFunctionArgs) {
     seo,
     updatedAt: currentPolicy?.updatedAt,
   };
-}
+};
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),
 );
 
-export default function Policy() {
+export default function PolicyRoute() {
   const options = {dateStyle: 'full', timeStyle: 'long'} as const;
   const {createdAt, jsonLd, listItems, policy, updatedAt} =
     useLoaderData<typeof loader>();

@@ -26082,6 +26082,8 @@ export enum MarketUserErrorCode {
   TooShort = 'TOO_SHORT',
   /** Unified markets are not enabled. */
   UnifiedMarketsNotEnabled = 'UNIFIED_MARKETS_NOT_ENABLED',
+  /** Managing this catalog is not supported by your plan. */
+  UnpermittedEntitlementsMarketCatalogs = 'UNPERMITTED_ENTITLEMENTS_MARKET_CATALOGS',
   /** The language isn't published to the store. */
   UnpublishedLanguage = 'UNPUBLISHED_LANGUAGE',
   /** Can't add unsupported country or region. */
@@ -31073,7 +31075,36 @@ export type Mutation = {
   orderCapture?: Maybe<OrderCapturePayload>;
   /** Closes an open order. */
   orderClose?: Maybe<OrderClosePayload>;
-  /** Creates an order. */
+  /**
+   * Creates an order with attributes such as customer information, line items, and shipping and billing addresses.
+   *
+   * Use the `orderCreate` mutation to programmatically generate orders in scenarios where
+   * orders aren't created through the standard checkout process, such as when importing orders from an external
+   * system or creating orders for wholesale customers.
+   *
+   * The `orderCreate` mutation doesn't support applying multiple discounts, such as discounts on line items.
+   * Automatic discounts won't be applied unless you replicate the logic of those discounts in your custom
+   * implementation. You can [apply a discount code](https://shopify.dev/docs/api/admin-graphql/latest/input-objects/OrderCreateDiscountCodeInput),
+   * but only one discount code can be set for each order.
+   *
+   * > Note:
+   * > If you're using the `orderCreate` mutation with a
+   * > [trial](https://help.shopify.com/manual/intro-to-shopify/pricing-plans/free-trial) or
+   * > [development store](https://shopify.dev/docs/api/development-stores), then you can create a
+   * > maximum of five new orders per minute.
+   *
+   * After you create an order, you can make subsequent edits to the order using one of the following mutations:
+   * * [`orderUpdate`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderUpdate):
+   * Used for simple updates to an order, such as changing the order's note, tags, or customer information.
+   * * [`orderEditBegin`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderEditBegin):
+   * Used when you need to make significant updates to an order, such as adding or removing line items, changing
+   * quantities, or modifying discounts. The `orderEditBegin` mutation initiates an order editing session,
+   * allowing you to make multiple changes before finalizing them. Learn more about using the `orderEditBegin`
+   * mutation to [edit existing orders](https://shopify.dev/docs/apps/build/orders-fulfillment/order-management-apps/edit-orders).
+   *
+   * Learn how to build apps that integrate with
+   * [order management and fulfillment processes](https://shopify.dev/docs/apps/build/orders-fulfillment).
+   */
   orderCreate?: Maybe<OrderCreatePayload>;
   /** Creates a payment for an order by mandate. */
   orderCreateMandatePayment?: Maybe<OrderCreateMandatePaymentPayload>;
@@ -31125,7 +31156,20 @@ export type Mutation = {
   orderOpen?: Maybe<OrderOpenPayload>;
   /** Create a risk assessment for an order. */
   orderRiskAssessmentCreate?: Maybe<OrderRiskAssessmentCreatePayload>;
-  /** Updates the fields of an order. */
+  /**
+   * Updates the attributes of an order, such as the customer's email, the shipping address for the order,
+   * tags, and [metafields](https://shopify.dev/docs/apps/build/custom-data) associated with the order.
+   *
+   * If you need to make significant updates to an order, such as adding or removing line items, changing
+   * quantities, or modifying discounts, then use
+   * the [`orderEditBegin`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/orderEditBegin)
+   * mutation instead. The `orderEditBegin` mutation initiates an order editing session,
+   * allowing you to make multiple changes before finalizing them. Learn more about using the `orderEditBegin`
+   * mutation to [edit existing orders](https://shopify.dev/docs/apps/build/orders-fulfillment/order-management-apps/edit-orders).
+   *
+   * Learn how to build apps that integrate with
+   * [order management and fulfillment processes](https://shopify.dev/docs/apps/build/orders-fulfillment).
+   */
   orderUpdate?: Maybe<OrderUpdatePayload>;
   /** Creates a page. */
   pageCreate?: Maybe<PageCreatePayload>;
@@ -36819,9 +36863,15 @@ export type OrderCreateManualPaymentPayload = {
   userErrors: Array<OrderCreateManualPaymentOrderCreateManualPaymentError>;
 };
 
-/** The input fields which control certain side affects. */
+/**
+ * The input fields that define the strategies for updating inventory and
+ * whether to send shipping and order confirmations to customers.
+ */
 export type OrderCreateOptionsInput = {
-  /** The behaviour to use when updating inventory. */
+  /**
+   * The strategy for handling updates to inventory: not claiming inventory, ignoring inventory policies,
+   * or following policies when claiming inventory.
+   */
   inventoryBehaviour?: InputMaybe<OrderCreateInputsInventoryBehavior>;
   /** Whether to send a shipping confirmation to the customer. */
   sendFulfillmentReceipt?: InputMaybe<Scalars['Boolean']['input']>;
@@ -42461,12 +42511,16 @@ export enum ProductOptionsCreateUserErrorCode {
   OptionLinkedMetafieldAlreadyTaken = 'OPTION_LINKED_METAFIELD_ALREADY_TAKEN',
   /** Each option must have a name specified. */
   OptionNameMissing = 'OPTION_NAME_MISSING',
+  /** Option name is too long. */
+  OptionNameTooLong = 'OPTION_NAME_TOO_LONG',
   /** If specified, position field must be present in all option inputs. */
   OptionPositionMissing = 'OPTION_POSITION_MISSING',
   /** Each option must have at least one option value specified. */
   OptionValuesMissing = 'OPTION_VALUES_MISSING',
   /** Option values count is over the allowed limit. */
   OptionValuesOverLimit = 'OPTION_VALUES_OVER_LIMIT',
+  /** Option value name is too long. */
+  OptionValueNameTooLong = 'OPTION_VALUE_NAME_TOO_LONG',
   /** Position must be between 1 and the maximum number of options per product. */
   PositionOutOfBounds = 'POSITION_OUT_OF_BOUNDS',
   /** Product does not exist. */
@@ -43944,6 +43998,8 @@ export enum ProductVariantsBulkUpdateUserErrorCode {
   OptionValuesForNumberOfUnknownOptions = 'OPTION_VALUES_FOR_NUMBER_OF_UNKNOWN_OPTIONS',
   /** Option value does not exist. */
   OptionValueDoesNotExist = 'OPTION_VALUE_DOES_NOT_EXIST',
+  /** Option value name is too long. */
+  OptionValueNameTooLong = 'OPTION_VALUE_NAME_TOO_LONG',
   /** Product does not exist. */
   ProductDoesNotExist = 'PRODUCT_DOES_NOT_EXIST',
   /** Product is suspended. */

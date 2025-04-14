@@ -12,7 +12,7 @@ export async function loader(args: LoaderFunctionArgs) {
   return {...deferredData, ...criticalData};
 }
 
-async function loadCriticalData({context}: LoaderFunctionArgs) {
+const loadCriticalData = async ({context}: LoaderFunctionArgs) => {
   const {shopify, weaverse} = context;
 
   const [weaverseData] = await Promise.all([
@@ -28,16 +28,14 @@ async function loadCriticalData({context}: LoaderFunctionArgs) {
     seo,
     weaverseData,
   };
-}
+};
 
-function loadDeferredData(_: LoaderFunctionArgs) {
-  return {};
-}
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),
 );
 
-export default function Homepage() {
+export default function HomepageRoute() {
   return <WeaverseContent />;
 }

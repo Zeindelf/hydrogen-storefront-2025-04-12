@@ -117,13 +117,22 @@ export async function action({context, request}: ActionFunctionArgs) {
   );
 }
 
-export async function loader({context, request}: LoaderFunctionArgs) {
+export async function loader(args: LoaderFunctionArgs) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+}
+
+const loadCriticalData = async ({context, request}: LoaderFunctionArgs) => {
   const {listItems, seo} = cartSeo({request});
 
   const cart = await context.cart.get();
 
   return {cart, listItems, seo};
-}
+};
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

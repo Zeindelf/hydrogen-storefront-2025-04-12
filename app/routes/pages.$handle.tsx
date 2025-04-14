@@ -13,7 +13,16 @@ import {getSeoMetaFromMatches, mergeMeta} from '~/seo/meta';
 import {pageSeo} from '~/seo/page';
 import {notFound} from '~/utils/helpers';
 
-export async function loader({context, params, request}: LoaderFunctionArgs) {
+export async function loader(args: LoaderFunctionArgs) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+}
+
+const loadCriticalData = async (args: LoaderFunctionArgs) => {
+  const {context, params, request} = args;
+
   if (!params.handle) {
     throw new Error('Missing page handle');
   }
@@ -29,7 +38,9 @@ export async function loader({context, params, request}: LoaderFunctionArgs) {
   const {listItems, seo} = pageSeo({page, request});
 
   return {listItems, page, seo};
-}
+};
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

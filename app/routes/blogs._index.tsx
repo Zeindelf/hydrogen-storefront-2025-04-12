@@ -24,7 +24,7 @@ export async function loader(args: LoaderFunctionArgs) {
   return {...deferredData, ...criticalData};
 }
 
-async function loadCriticalData({context, request}: LoaderFunctionArgs) {
+const loadCriticalData = async ({context, request}: LoaderFunctionArgs) => {
   const {shopify, storefront} = context;
   const paginationVariables = getPaginationVariables(request, {pageBy: 10});
 
@@ -43,11 +43,9 @@ async function loadCriticalData({context, request}: LoaderFunctionArgs) {
   };
 
   return {blogs, featured, latest, listItems, seo};
-}
+};
 
-function loadDeferredData(_: LoaderFunctionArgs) {
-  return {};
-}
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

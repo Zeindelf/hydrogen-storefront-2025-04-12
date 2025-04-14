@@ -35,6 +35,13 @@ import {
 } from '~/utils/shopify';
 
 export async function loader(args: LoaderFunctionArgs) {
+  const deferredData = loadDeferredData(args);
+  const criticalData = await loadCriticalData(args);
+
+  return {...deferredData, ...criticalData};
+}
+
+const loadCriticalData = async (args: LoaderFunctionArgs) => {
   const {context, params, request} = args;
   const {navigation, shopify} = context;
   const pathname = params['*'] || '';
@@ -92,7 +99,9 @@ export async function loader(args: LoaderFunctionArgs) {
     products,
     seo,
   };
-}
+};
+
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

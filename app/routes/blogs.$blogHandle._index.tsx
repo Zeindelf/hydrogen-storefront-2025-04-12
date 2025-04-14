@@ -25,7 +25,7 @@ export async function loader(args: LoaderFunctionArgs) {
   return {...deferredData, ...criticalData};
 }
 
-async function loadCriticalData(args: LoaderFunctionArgs) {
+const loadCriticalData = async (args: LoaderFunctionArgs) => {
   const {context, params, request} = args;
   const paginationVariables = getPaginationVariables(request, {pageBy: 6});
 
@@ -48,11 +48,9 @@ async function loadCriticalData(args: LoaderFunctionArgs) {
   const articles = flattenConnection(blog.articles);
 
   return {articles, blog, jsonLd, listItems, seo};
-}
+};
 
-function loadDeferredData(_: LoaderFunctionArgs) {
-  return {};
-}
+const loadDeferredData = (_: LoaderFunctionArgs) => ({});
 
 export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
   getSeoMetaFromMatches(matches),

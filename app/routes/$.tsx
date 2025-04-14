@@ -11,7 +11,7 @@ export async function loader({request}: LoaderFunctionArgs) {
   throw notFound(`${pathname} not found`);
 }
 
-export default function CatchAllPage() {
+export default function CatchAllPageRoute() {
   return null;
 }
 

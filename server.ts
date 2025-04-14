@@ -6,11 +6,7 @@ import * as remixBuild from 'virtual:remix/server-build';
 
 import {createAppLoadContext} from '~/core/context.server';
 
-// import {createAppLoadContext} from '~/lib/context';
-
-/**
- * Export a fetch handler in module format.
- */
+/** Export a fetch handler in module format. */
 export default {
   async fetch(
     request: Request,
