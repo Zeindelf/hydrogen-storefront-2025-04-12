@@ -134,11 +134,11 @@ export default function ProductRoute() {
       <Breadcrumb listItems={listItems} />
 
       <div className="container">
-        <section className="lg:w-8/12 relative">
+        <section className="relative lg:w-8/12">
           <p>PRODUC_IMAGE</p>
         </section>
 
-        <section className="lg:w-4/12 ml-auto">
+        <section className="ml-auto lg:w-4/12">
           <article>
             <h1>{product.title}</h1>
           </article>

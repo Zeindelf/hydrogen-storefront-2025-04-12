@@ -1,6 +1,7 @@
 export * from './cache';
 export * from './create-config';
 export * from './generate-node-cursor';
+export * from './oxygen';
 export * from './parse-media';
 export * from './parse-menu';
 export * from './parse-metafield';

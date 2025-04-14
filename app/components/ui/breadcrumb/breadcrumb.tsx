@@ -94,7 +94,7 @@ export const Ellipsis = ({
     role="presentation"
     {...props}
   >
-    <Icons.Lucide.Ellipsis className="h-4 w-4" />
+    <Icons.Lucide.Ellipsis className="size-4" />
     <span className="sr-only">More</span>
   </span>
 );

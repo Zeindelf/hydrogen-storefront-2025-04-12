@@ -10,7 +10,7 @@ import {Icons} from '../icons';
 
 export type ButtonVariantsProps = VariantProps<typeof buttonVariants>;
 export const buttonVariants = cva(
-  'inline-flex gap-2 items-center justify-center relative whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-primary focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+  'relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-primary focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     defaultVariants: {
       size: 'default',
@@ -19,7 +19,7 @@ export const buttonVariants = cva(
     variants: {
       size: {
         default: 'h-9 px-4 py-2 text-sm md:text-base',
-        icon: 'h-9 w-9',
+        icon: 'size-9',
         lg: 'h-10 px-8',
         sm: 'h-8 px-3 text-sm',
         xs: 'h-7 px-2 text-xs',
@@ -86,12 +86,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <>
-            <span aria-hidden className="contents invisible">
+            <span aria-hidden className="invisible contents">
               {children}
             </span>
             <span className="sr-only">{children}</span>
 
-            <span className="flex items-center justify-center absolute inset-0">
+            <span className="absolute inset-0 flex items-center justify-center">
               <Icons.Loaders.Ellipsis className="size-8" />
             </span>
           </>

@@ -15,8 +15,8 @@ export const EmptySearch = ({
   searchTerm: string;
 }) => {
   return (
-    <div className="py-8 mt-4 max-w-full flex items-center flex-col justify-center mx-auto">
-      <h2 className="text-center mb-2">
+    <div className="mx-auto mt-4 flex max-w-full flex-col items-center justify-center py-8">
+      <h2 className="mb-2 text-center">
         <span>
           Não encontramos nenhum resultado para{' '}
           <strong className="text-primary underline">{searchTerm}</strong>.
@@ -26,10 +26,10 @@ export const EmptySearch = ({
       <ul className="text-sm">
         {tips.map((item) => (
           <li
-            className="flex items-center px-1 my-1 [&_strong]:text-primary"
+            className="my-1 flex items-center px-1 [&_strong]:text-primary"
             key={item}
           >
-            <span className="bg-primary size-2 m-2 rounded-full"></span>
+            <span className="m-2 size-2 rounded-full bg-primary"></span>
             <p dangerouslySetInnerHTML={{__html: item}} />
           </li>
         ))}

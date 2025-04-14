@@ -164,7 +164,7 @@ export function ErrorBoundary() {
   }
 
   return (
-    <div className="route-error">
+    <div>
       <h1>Oops</h1>
       <h2>{errorStatus}</h2>
       {errorMessage && (

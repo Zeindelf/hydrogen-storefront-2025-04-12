@@ -71,6 +71,7 @@
     "eslint-plugin-hydrogen": "^0.12.5",
     "eslint-plugin-perfectionist": "^4.11.0",
     "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-tailwindcss": "^3.18.0",
     "postcss-import": "^16.1.0",
     "prettier": "^3.5.3",
     "schema-dts": "^1.1.5",

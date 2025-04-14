@@ -13,11 +13,11 @@ const proseVariants = cva(
     // Sizing
     'max-w-none',
     // Spaces
-    'prose-p:mt-0 prose-p:mb-2',
+    'prose-p:mb-2 prose-p:mt-0',
     // Texts
     'text-sm text-foreground prose-strong:text-black',
     // Headings
-    'prose-headings:mt-6 prose-headings:mb-4 prose-headings:font-bold',
+    'prose-headings:mb-4 prose-headings:mt-6 prose-headings:font-bold',
     // Headings levels
     // 'prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg',
     'prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl',
@@ -33,7 +33,7 @@ const proseVariants = cva(
   {
     variants: {
       layout: {
-        'page-content': 'max-w-75ch mx-auto prose-p:my-2',
+        'page-content': 'mx-auto max-w-[75ch] prose-p:my-2',
       },
     },
   },

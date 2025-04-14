@@ -4,6 +4,7 @@ module.exports = {
     '@remix-run/eslint-config',
     'plugin:hydrogen/recommended',
     'plugin:hydrogen/typescript',
+    'plugin:tailwindcss/recommended',
     'plugin:perfectionist/recommended-alphabetical-legacy',
   ],
   rules: {

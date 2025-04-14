@@ -10,10 +10,10 @@ export const ErrorFallback = ({error}: ErrorFallbackProps) => {
 
   return (
     <div
-      className="h-svh w-full flex items-center justify-center flex-col"
+      className="flex h-svh w-full flex-col items-center justify-center"
       role="alert"
     >
-      <section className="container flex items-center justify-center flex-col">
+      <section className="container flex flex-col items-center justify-center">
         <h1 className="text-center">Something has gone seriously wrong</h1>
 
         <p>

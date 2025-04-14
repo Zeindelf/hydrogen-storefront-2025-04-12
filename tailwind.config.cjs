@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-const {sans} = defaultTheme.fontFamily;
+const {sans, serif} = defaultTheme.fontFamily;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -20,9 +20,6 @@ module.exports = {
       padding: {
         DEFAULT: '1rem',
         lg: '2rem',
-      },
-      screens: {
-        xl: '1280px',
       },
     },
     extend: {
@@ -90,10 +87,25 @@ module.exports = {
         },
       },
       fontFamily: {
+        heading: ['Margem', ...sans],
         sans: ['Margem', ...sans],
+        serif: [...serif],
       },
       fontSize: {
-        '2xs': '0.625rem',
+        '2xl': ['1.5rem', {lineHeight: '2rem'}], // 24px
+        '2xs': ['0.625rem', {lineHeight: '1rem'}], // 10px
+        '3xl': ['1.875rem', {lineHeight: '2.25rem'}], // 30px
+        '4xl': ['2.25rem', {lineHeight: '2.5rem'}], // 36px
+        '5xl': ['3rem', {lineHeight: '1.25'}], // 48px
+        '6xl': ['3.75rem', {lineHeight: '1.25'}], // 60px
+        '7xl': ['4.5rem', {lineHeight: '1.25'}], // 72px
+        '8xl': ['6rem', {lineHeight: '1.25'}], // 96px
+        '9xl': ['8rem', {lineHeight: '1.25'}], // 128px
+        base: ['1rem', {lineHeight: '1.5rem'}], // 16px
+        lg: ['1.125rem', {lineHeight: '1.75rem'}], // 18px
+        sm: ['0.875rem', {lineHeight: '1.25rem'}], // 14px
+        xl: ['1.25rem', {lineHeight: '1.75rem'}], // 20px
+        xs: ['0.75rem', {lineHeight: '1rem'}], // 12px
       },
       keyframes: {
         'accordion-down': {
@@ -127,17 +139,25 @@ module.exports = {
         },
       },
       maxWidth: {
-        '2xs': '16rem',
-        '8xl': '90rem',
+        '2xs': '16rem', // 256px
+        '8xl': '90rem', // 1440px
       },
       screens: {
-        xs: '375px',
+        '2xl': '96rem', // 1536px
+        lg: '64rem', // 1024px
+        md: '48rem', // 768px
+        sm: '40rem', // 640px
+        xl: '80rem', // 1280px
+        xs: '30rem', // 480px
       },
       spacing: {
         lg: '1rem',
         md: '0.75rem',
         sm: '0.625rem',
       },
+    },
+    zIndex: {
+      1: '1',
     },
   },
 };

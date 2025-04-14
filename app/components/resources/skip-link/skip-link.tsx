@@ -13,7 +13,7 @@ export const SkipLink = React.forwardRef<HTMLAnchorElement, SkipLInkProps>(
     return (
       <a
         aria-label={title || text}
-        className="m-4 bg-primary text-white rounded-lg p-4 absolute opacity-0 transition-transform duration-150 -z-10 focus:opacity-100 focus:z-20 focus-visible:opacity-100 focus-visible:z-20"
+        className="absolute -z-10 m-4 rounded-lg bg-primary p-4 text-white opacity-0 transition-transform duration-150 focus:z-20 focus:opacity-100 focus-visible:z-20 focus-visible:opacity-100"
         href={to}
         ref={ref}
         tabIndex={0}

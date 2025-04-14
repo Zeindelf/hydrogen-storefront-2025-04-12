@@ -85,7 +85,7 @@ export default function SearchRoute() {
 
       <section className="container">
         <search>
-          <div className="flex items-center justify-center flex-col text-center text-sm">
+          <div className="flex flex-col items-center justify-center text-center text-sm">
             <p dangerouslySetInnerHTML={{__html: message}} />
             <h1 className="text-primary">{searchTerm}</h1>
 

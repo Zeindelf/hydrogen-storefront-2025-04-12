@@ -69,7 +69,7 @@ export default function BlogRoute() {
       <Breadcrumb listItems={listItems} />
 
       <section className="container">
-        <header className="flex flex-col items-center justify-center mb-10">
+        <header className="mb-10 flex flex-col items-center justify-center">
           <hgroup className="text-center">
             <h1>{blog.blogSeo?.title || blog.title}</h1>
             {blog.blogSeo?.description && <p>{blog.blogSeo?.description}</p>}

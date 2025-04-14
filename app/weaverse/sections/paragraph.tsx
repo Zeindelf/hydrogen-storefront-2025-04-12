@@ -17,7 +17,7 @@ export interface ParagraphProps
   content: string;
 }
 
-const variants = cva('paragraph', {
+const variants = cva('', {
   defaultVariants: {
     textSize: 'base',
     width: 'full',
@@ -44,8 +44,8 @@ const variants = cva('paragraph', {
       xs: 'text-xs',
     },
     width: {
-      full: 'w-full mx-auto',
-      narrow: 'w-full md:w-1/2 lg:w-3/4 max-w-4xl mx-auto',
+      full: 'mx-auto w-full',
+      narrow: 'mx-auto w-full max-w-4xl md:w-1/2 lg:w-3/4',
     },
   },
 });

@@ -95,7 +95,7 @@ export default function Policy() {
           <DateTime className="font-bold" date={updatedAt} options={options} />
         </p>
 
-        <div className="flex items-center justify-center my-6">
+        <div className="my-6 flex items-center justify-center">
           <Link
             ariaLabel="Voltar para políticas"
             className={cn(buttonVariants({size: 'sm', variant: 'outline'}))}

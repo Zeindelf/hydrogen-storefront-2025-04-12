@@ -19,7 +19,7 @@ export const linkVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'underline font-medium text-primary',
+        primary: 'font-medium text-primary underline',
       },
     },
   },
@@ -73,12 +73,12 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       >
         {isLoading ? (
           <>
-            <span aria-hidden className="contents invisible">
+            <span aria-hidden className="invisible contents">
               {children}
             </span>
             <span className="sr-only">{children}</span>
 
-            <span className="flex items-center justify-center absolute inset-0">
+            <span className="absolute inset-0 flex items-center justify-center">
               <Icons.Loaders.Ellipsis className="size-8" />
             </span>
           </>
@@ -90,8 +90,8 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
               bg-no-repeat
               transition-[background-size]
               duration-500
-              hover:bg-[length:100%_3px]
               group-hover:bg-[length:100%_10px]
+              hover:bg-[length:100%_3px]
               dark:from-primary/90 dark:to-primary"
               >
                 {children}

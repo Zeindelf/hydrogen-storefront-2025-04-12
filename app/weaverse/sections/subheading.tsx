@@ -9,7 +9,7 @@ import {forwardRef} from 'react';
 
 import {cn} from '~/utils/helpers';
 
-const variants = cva('subheading', {
+const variants = cva('', {
   defaultVariants: {
     alignment: 'center',
     size: 'base',

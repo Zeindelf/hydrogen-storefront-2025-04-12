@@ -46,7 +46,7 @@ const fontSizeVariants = cva('', {
   },
 });
 
-const variants = cva('heading', {
+const variants = cva('', {
   defaultVariants: {
     alignment: 'center',
     letterSpacing: 'normal',
@@ -70,7 +70,7 @@ const variants = cva('heading', {
     size: {
       custom: '',
       default: '',
-      scale: 'text-scale',
+      scale: '',
     },
     weight: {
       '100': 'font-thin',

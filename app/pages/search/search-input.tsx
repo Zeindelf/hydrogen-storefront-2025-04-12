@@ -10,14 +10,14 @@ export const SearchInput = ({searchTerm}: {searchTerm: string}) => {
   return (
     <Form
       action={createSearchUrl(searchTerm)}
-      className="relative flex w-full items-center justify-center my-4"
+      className="relative my-4 flex w-full items-center justify-center"
       role="search"
     >
       <label className="sr-only" htmlFor="searchInput">
         Pesquisar
       </label>
       <input
-        className="md:w-96 lg:w-[400px] h-9 rounded-r-none"
+        className="h-9 rounded-r-none md:w-96 lg:w-[400px]"
         defaultValue={searchTerm}
         id="searchInput"
         name="q"

@@ -16,7 +16,7 @@ export const NotFound = ({
   return (
     <section className="container my-6 flex flex-col items-start justify-start md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6">
       <div className="space-x-2 pb-8 pt-6 md:space-y-5">
-        <h1 className="text-7xl font-extrabold leading-9 tracking-tight text-primary md:border-r md:px-6 md:text-8xl md:leading-14">
+        <h1 className="text-7xl font-extrabold leading-9 tracking-tight text-primary md:border-r md:px-6 md:text-8xl md:leading-10">
           {status}
         </h1>
       </div>

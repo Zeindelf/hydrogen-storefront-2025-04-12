@@ -27,7 +27,7 @@ const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
   ) => {
     return (
       <div
-        className="w-full flex items-center justify-center h-[var(--mobile-height)] md:h-[var(--desktop-height)]"
+        className="flex h-[var(--mobile-height)] w-full items-center justify-center md:h-[var(--desktop-height)]"
         ref={ref}
         style={
           {
@@ -40,7 +40,7 @@ const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
         {...rest}
       >
         {addSeparator && (
-          <div className="w-3/4 md:w-2/3 mx-auto border-t h-px border-[var(--separator-color,var(--color-border))]" />
+          <div className="mx-auto h-px w-3/4 border-t border-[var(--separator-color,var(--color-border))] md:w-2/3" />
         )}
       </div>
     );
