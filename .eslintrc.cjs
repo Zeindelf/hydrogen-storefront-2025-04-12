@@ -22,5 +22,6 @@ module.exports = {
     'no-useless-escape': 'off',
     'perfectionist/sort-modules': 'off',
     'prettier/prettier': ['error', {endOfLine: 'auto'}],
+    'tailwindcss/no-custom-classname': 'off',
   },
 };
