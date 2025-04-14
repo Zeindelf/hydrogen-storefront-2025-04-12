@@ -122,7 +122,7 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {
-    return <Errors.Collection404 />;
+    return <Errors.NotFound />;
   }
 
   return <Errors.ErrorFallback />;

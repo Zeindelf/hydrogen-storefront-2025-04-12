@@ -2,8 +2,6 @@ import type {SeoConfig} from '@shopify/hydrogen';
 import type {WebSite, WithContext} from 'schema-dts';
 import type {Shopify} from 'types/shopify';
 
-import type {SocialMediaType} from '~/components/resources/social-media';
-
 import {socialLinks, truncate} from '~/utils/helpers';
 
 import {createMedia} from './media';
@@ -13,7 +11,7 @@ import {createRobots} from './robots';
 interface WebsiteMetadataArgs {
   request: Request;
   shopify: Shopify;
-  socials: SocialMediaType[];
+  socials: any[];
 }
 
 const createWebsiteMetadata = (args: WebsiteMetadataArgs) => {

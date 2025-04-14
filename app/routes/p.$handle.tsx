@@ -180,15 +180,11 @@ export function ErrorBoundary() {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {
-    const {description, routePromise, title} = error.data;
+    const {description, title} = error.data;
 
     return (
       <>
-        <Errors.Product404
-          description={description}
-          routePromise={routePromise}
-          title={title}
-        />
+        <Errors.NotFound description={description} title={title} />
       </>
     );
   }

@@ -1,8 +1,6 @@
 import type {Organization, Place, WithContext} from 'schema-dts';
 import type {Shopify} from 'types/shopify';
 
-import type {SocialMediaType} from '~/components/resources/social-media';
-
 export const author = {
   email: 'zeindelf@hotmail.com',
   job: 'Front-End Engineer',
@@ -14,7 +12,7 @@ export const author = {
 interface OrganizationSchemaArgs {
   request: Request;
   shopify: Shopify;
-  socials: SocialMediaType[];
+  socials: any[];
 }
 
 export const createOrganizationSchema = (args: OrganizationSchemaArgs) => {
