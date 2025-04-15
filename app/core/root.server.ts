@@ -36,6 +36,7 @@ export const rootLoader = async (args: LoaderFunctionArgs) => {
     env,
     isLoggedIn,
     navigation,
+    oxygen,
     shopify,
     store,
     storeDomain,
@@ -72,6 +73,7 @@ export const rootLoader = async (args: LoaderFunctionArgs) => {
       locales,
       navigation,
       origin,
+      oxygen,
       selectedLocale: storefront.i18n,
       seo,
       shop: getShopAnalytics({

@@ -45130,7 +45130,11 @@ export type QueryRoot = {
   customerSegmentMembersQuery?: Maybe<CustomerSegmentMembersQuery>;
   /** Whether a member, which is a customer, belongs to a segment. */
   customerSegmentMembership: SegmentMembershipResponse;
-  /** Returns a list of customers. */
+  /**
+   * Returns a list of [customers](https://shopify.dev/api/admin-graphql/latest/objects/Customer) in your Shopify store, including key information such as name, email, location, and purchase history.
+   * Use this query to segment your audience, personalize marketing campaigns, or analyze customer behavior by applying filters based on location, order history, marketing preferences and tags.
+   * The `customers` query supports [pagination](https://shopify.dev/api/usage/pagination-graphql) and [sorting](https://shopify.dev/api/admin-graphql/latest/enums/CustomerSortKeys).
+   */
   customers: CustomerConnection;
   /** The number of customers. */
   customersCount?: Maybe<Count>;
@@ -59186,6 +59190,7 @@ export enum WebhookSubscriptionTopic {
    * This can be the first or a subsequent risk assessment.
    * New risk assessments can be provided until the order is marked as fulfilled.
    * Includes the risk level, risk facts, the provider and the order ID.
+   * When the provider is Shopify, that field is null.
    * Does not include the risk recommendation for the order.
    * The Shop ID is available in the headers.
    *  Requires the `read_orders` scope.

@@ -1,9 +1,10 @@
 import type {HydrogenThemeSchema} from '@weaverse/hydrogen';
 
+import {newsletterSchema} from '~/settings/newsletter';
+import {socialMediaSchema} from '~/settings/social';
+import {storeInformationSchema} from '~/settings/store';
+
 import pkg from '../../package.json';
-import {newsletterSchema} from './settings/newsletter';
-import {socialMediaSchema} from './settings/social';
-import {storeInformationSchema} from './settings/store';
 
 export const themeSchema: HydrogenThemeSchema = {
   defaultLocale: 'pt-br',

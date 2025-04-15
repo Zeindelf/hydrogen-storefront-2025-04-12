@@ -30,6 +30,7 @@ import tailwind from '~/styles/tailwind.css?url';
 import {CustomAnalytics} from './analytics';
 import {GoogleAnalytics, GoogleTagManager} from './analytics/google';
 import {rootLoader} from './core/root.server';
+import {RootLayout} from './layout/root-layout';
 import {Errors} from './pages/errors';
 import {generateFaviconUrls} from './seo/favicon';
 import {JsonSchema} from './seo/json-schema';
@@ -138,7 +139,9 @@ export function Layout() {
           <GoogleTagManager gtmId={gtmId} />
 
           <AuthenticityTokenProvider token={token}>
-            <Outlet />
+            <RootLayout>
+              <Outlet />
+            </RootLayout>
           </AuthenticityTokenProvider>
 
           <CustomAnalytics />

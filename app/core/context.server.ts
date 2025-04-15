@@ -16,7 +16,7 @@ import {
 } from '~/graphql/storefront/queries';
 import {getLocaleFromRequest} from '~/i18n/locale';
 import {uaParser} from '~/utils/helpers';
-import {createConfig, parseMenu} from '~/utils/shopify';
+import {createConfig, getOxygenEnv, parseMenu} from '~/utils/shopify';
 import {createWeaverseClient} from '~/weaverse/weaverse.server';
 
 import {createAdminApi} from './admin.server';
@@ -69,6 +69,8 @@ export async function createAppLoadContext(
     waitUntil,
   });
 
+  const oxygen = getOxygenEnv(request);
+
   const [{shop}, {adminShop}, {localization}, {menu}, {customer, isLoggedIn}] =
     await Promise.all([
       hydrogenContext.storefront.query(SHOP_QUERY),
@@ -88,6 +90,7 @@ export async function createAppLoadContext(
     customer,
     isLoggedIn,
     navigation: parseMenu(menu, shop.primaryDomain),
+    oxygen,
     shopify: createConfig({adminShop, localization, shop}),
     storeDomain,
     ua,
