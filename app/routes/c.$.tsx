@@ -11,9 +11,10 @@ import {
   AnalyticsPageType,
   flattenConnection,
 } from '@shopify/hydrogen';
-import {isEmpty, last} from 'ramda';
+import {isEmpty, last, product} from 'ramda';
 
 import {Breadcrumb} from '~/components/global/breadcrumb';
+import {Link} from '~/components/ui/link';
 import {
   FILTER_FRAGMENT,
   MEDIA_FRAGMENT,
@@ -30,6 +31,7 @@ import {notFound} from '~/utils/helpers';
 import {
   createCollectionsPaths,
   createCollectionVariables,
+  createProductUrl,
   getFilters,
   verifyCollectionPage,
 } from '~/utils/shopify';
@@ -108,7 +110,7 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
 );
 
 export default function CollectionRoute() {
-  const {collection, jsonLd, listItems, pathname} =
+  const {collection, jsonLd, listItems, pathname, products} =
     useLoaderData<typeof loader>();
 
   return (
@@ -118,6 +120,21 @@ export default function CollectionRoute() {
 
       <section className="container">
         <h1>{collection.title}</h1>
+      </section>
+
+      <section className="container grid grid-cols-3 gap-2">
+        {products.map((product) => (
+          <article key={product.id}>
+            <Link
+              ariaLabel={product.title}
+              className="flex h-32 rounded border bg-white p-4"
+              prefetch="intent"
+              to={createProductUrl(product.handle)}
+            >
+              {product.title}
+            </Link>
+          </article>
+        ))}
       </section>
 
       <Analytics.CollectionView

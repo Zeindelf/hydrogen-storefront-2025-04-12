@@ -20,6 +20,7 @@ import * as React from 'react';
 
 import {Breadcrumb} from '~/components/global/breadcrumb';
 import {SkipLink} from '~/components/resources/skip-link';
+import {Cart} from '~/components/shared/cart';
 import {
   MEDIA_FRAGMENT,
   PRICE_RANGE_FRAGMENT,
@@ -118,8 +119,9 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(
 );
 
 export default function ProductRoute() {
-  const {jsonLd, listItems, product, recommendationsPromise} =
+  const {analytics, jsonLd, listItems, product, recommendationsPromise} =
     useLoaderData<typeof loader>();
+  const [quantity, _setQuantity] = React.useState(1);
 
   const selectedVariant = useOptimisticVariant(
     product.selectedOrFirstAvailableVariant,
@@ -142,6 +144,13 @@ export default function ProductRoute() {
           <article>
             <h1>{product.title}</h1>
           </article>
+
+          <Cart.AddButton
+            analytics={analytics}
+            className="mt-4"
+            quantity={quantity}
+            selectedVariant={selectedVariant}
+          />
         </section>
       </div>
 
@@ -179,11 +188,7 @@ export function ErrorBoundary() {
   if (isRouteErrorResponse(error)) {
     const {description, title} = error.data;
 
-    return (
-      <>
-        <Errors.NotFound description={description} title={title} />
-      </>
-    );
+    return <Errors.NotFound description={description} title={title} />;
   }
 
   return <Errors.ErrorFallback />;

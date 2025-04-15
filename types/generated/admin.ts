@@ -56891,7 +56891,7 @@ export enum TaxExemption {
   CaSkSubContractorExemption = 'CA_SK_SUB_CONTRACTOR_EXEMPTION',
   /** This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. */
   CaStatusCardExemption = 'CA_STATUS_CARD_EXEMPTION',
-  /** This customer is exempt from VAT for purchases within the EU that is shipping from outside of customer's country. */
+  /** This customer is exempt from VAT for purchases within the EU that is shipping from outside of customer's country, as well as purchases from the EU to the UK. */
   EuReverseChargeExemptionRule = 'EU_REVERSE_CHARGE_EXEMPTION_RULE',
   /** This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Alaska. */
   UsAkResellerExemption = 'US_AK_RESELLER_EXEMPTION',

@@ -47,7 +47,8 @@
     "social-links": "^1.15.1",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
-    "ua-parser-js": "^2.0.3"
+    "ua-parser-js": "^2.0.3",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.5",
