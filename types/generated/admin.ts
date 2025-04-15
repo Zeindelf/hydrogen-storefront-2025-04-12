@@ -20456,6 +20456,8 @@ export type FulfillmentOrderHoldUserError = DisplayableError & {
 
 /** Possible error codes that can be returned by `FulfillmentOrderHoldUserError`. */
 export enum FulfillmentOrderHoldUserErrorCode {
+  /** The fulfillment order line items are not unique. */
+  DuplicatedFulfillmentOrderLineItems = 'DUPLICATED_FULFILLMENT_ORDER_LINE_ITEMS',
   /** The handle provided for the fulfillment hold is already in use by this app for another hold on this fulfillment order. */
   DuplicateFulfillmentHoldHandle = 'DUPLICATE_FULFILLMENT_HOLD_HANDLE',
   /** The maximum number of fulfillment holds for this fulfillment order has been reached for this app. An app can only have up to 10 holds on a single fulfillment order at any one time. */

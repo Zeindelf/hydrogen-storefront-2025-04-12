@@ -1,6 +1,6 @@
 import type {BasicInput} from '@weaverse/hydrogen';
 
-const defaultTextSize = {
+export const defaultTextSize = {
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
   '4xl': 'text-4xl',
@@ -16,7 +16,7 @@ const defaultTextSize = {
   xs: 'text-xs',
 };
 
-const desktopTextSize = {
+export const desktopTextSize = {
   '2xl': 'md:text-2xl',
   '3xl': 'md:text-3xl',
   '4xl': 'md:text-4xl',
@@ -52,17 +52,12 @@ const sizeSchemaOptions: BasicInput = {
   },
   defaultValue: 'default',
   label: 'Text size',
-  name: 'textSize',
+  name: 'size',
   type: 'select',
 };
 
 const size = {
   options: defaultTextSize,
-  schema: sizeSchemaOptions,
-};
-
-const desktopSize = {
-  options: desktopTextSize,
   schema: sizeSchemaOptions,
 };
 
@@ -177,7 +172,6 @@ const weight = {
 
 export const text = {
   alignment,
-  desktopSize,
   letterSpacing,
   lineHeight,
   size,

@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import {cn} from '~/utils/helpers';
 
-import type {TypographyVariantsProps} from './typography';
+import type {TypographyVariantsProps} from '../theme/typography';
 
-import {typographyVariants} from './typography';
+import {typographyVariants} from '../theme/typography';
 
 const DEFAULT_TAG = 'p' as const;
 
@@ -57,7 +57,7 @@ export const Text = React.forwardRef<TextElement, TextProps>(
       className,
       letterSpacing,
       lineHeight,
-      textSize,
+      size,
       weight,
       ...props
     },
@@ -70,7 +70,7 @@ export const Text = React.forwardRef<TextElement, TextProps>(
           className,
           letterSpacing,
           lineHeight,
-          textSize,
+          size,
           weight,
         }),
       )}

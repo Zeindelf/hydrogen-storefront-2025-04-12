@@ -1,6 +1,7 @@
 import type {
   HydrogenComponentProps,
   HydrogenComponentSchema,
+  InspectorGroup,
 } from '@weaverse/hydrogen';
 
 import * as React from 'react';
@@ -10,7 +11,7 @@ import {cn} from '~/utils/helpers';
 import type {TextProps} from './text';
 
 import {text} from '../theme/text';
-import {typographyVariants} from './typography';
+import {typographyVariants} from '../theme/typography';
 
 export interface ParagraphProps
   extends Omit<TextProps, 'children'>,
@@ -31,8 +32,9 @@ const Paragraph = React.forwardRef<
       content,
       letterSpacing,
       lineHeight,
-      textSize,
+      size,
       weight,
+      ...props
     },
     ref,
   ) => {
@@ -44,13 +46,14 @@ const Paragraph = React.forwardRef<
             className,
             letterSpacing,
             lineHeight,
-            textSize,
+            size,
             weight,
           }),
         )}
         dangerouslySetInnerHTML={{__html: content}}
         ref={ref}
         style={{color}}
+        {...props}
       />
     );
   },
@@ -61,42 +64,27 @@ export default Paragraph;
 const placeholder =
   "Pair large text with an image or full-width video to showcase your brand's lifestyle to describe and showcase an important detail of your products that you can tag on your image.";
 
+export const textInputs: InspectorGroup['inputs'] = [
+  {
+    defaultValue: placeholder,
+    label: 'Content',
+    name: 'content',
+    placeholder,
+    type: 'textarea',
+  },
+  {label: 'Text color', name: 'color', type: 'color'},
+  {...text.size.schema},
+  {...text.alignment.schema},
+  {...text.letterSpacing.schema},
+  {...text.lineHeight.schema},
+  {...text.weight.schema},
+];
+
 export const schema: HydrogenComponentSchema = {
   inspector: [
     {
       group: 'Paragraph',
-      inputs: [
-        {
-          defaultValue: placeholder,
-          label: 'Content',
-          name: 'content',
-          placeholder,
-          type: 'textarea',
-        },
-        {label: 'Text color', name: 'color', type: 'color'},
-        {...text.size.schema},
-        {...text.alignment.schema},
-        {...text.letterSpacing.schema},
-        {...text.lineHeight.schema},
-        {...text.weight.schema},
-      ],
-    },
-    {
-      group: 'Paragraph Position',
-      inputs: [
-        {
-          configs: {
-            max: 100,
-            min: 25,
-            step: 25,
-            unit: '%',
-          },
-          defaultValue: 100,
-          label: 'Width',
-          name: 'width',
-          type: 'range',
-        },
-      ],
+      inputs: textInputs,
     },
   ],
   title: 'Paragraph',

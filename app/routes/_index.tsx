@@ -3,7 +3,6 @@ import type {SeoConfig} from '@shopify/hydrogen';
 import type {LoaderFunctionArgs} from '@shopify/remix-oxygen';
 
 import {Link} from '~/components/ui/link';
-import {Text} from '~/layout/text';
 import {getSeoMetaFromMatches, mergeMeta} from '~/seo/meta';
 import {createCollectionUrl, createProductUrl} from '~/utils/shopify';
 import {WeaverseContent} from '~/weaverse';
@@ -59,12 +58,6 @@ export default function HomepageRoute() {
         </Link>
       </div>
 
-      <Text textSize="2xl" weight="bold">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ea
-        repellendus commodi vel, dolor laboriosam officia et, voluptates
-        temporibus dolore quos sunt autem beatae, obcaecati ipsum quas corrupti
-        iste quis!
-      </Text>
       <hr />
       <WeaverseContent />
     </>
