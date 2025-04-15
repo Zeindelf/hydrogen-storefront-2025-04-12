@@ -11,7 +11,7 @@ import {
   AnalyticsPageType,
   flattenConnection,
 } from '@shopify/hydrogen';
-import {isEmpty, last, product} from 'ramda';
+import {isEmpty, last} from 'ramda';
 
 import {Breadcrumb} from '~/components/global/breadcrumb';
 import {Link} from '~/components/ui/link';
