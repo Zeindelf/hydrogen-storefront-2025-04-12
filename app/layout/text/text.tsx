@@ -41,12 +41,6 @@ export interface TextProps
 
 type TextElement = React.ElementRef<typeof DEFAULT_TAG>;
 
-export const TextBase = React.forwardRef<TextElement, TextProps>(
-  (props, ref) => {
-    return <Slot ref={ref} suppressHydrationWarning {...props} />;
-  },
-);
-
 export const Text = React.forwardRef<TextElement, TextProps>(
   (
     {
@@ -63,7 +57,7 @@ export const Text = React.forwardRef<TextElement, TextProps>(
     },
     ref,
   ) => (
-    <TextBase
+    <Slot
       className={cn(
         typographyVariants({
           alignment,
@@ -75,9 +69,10 @@ export const Text = React.forwardRef<TextElement, TextProps>(
         }),
       )}
       ref={ref}
+      suppressHydrationWarning
       {...props}
     >
       {asChild ? children : <Tag>{children}</Tag>}
-    </TextBase>
+    </Slot>
   ),
 );

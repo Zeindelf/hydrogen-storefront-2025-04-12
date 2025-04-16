@@ -15,6 +15,7 @@ export const typographyVariants = cva('', {
     letterSpacing: text.letterSpacing.options,
     lineHeight: text.lineHeight.options,
     size: text.size.options,
+    variant: text.variant.options,
     weight: text.weight.options,
   },
 });

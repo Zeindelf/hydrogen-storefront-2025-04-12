@@ -8,21 +8,21 @@ import * as React from 'react';
 
 import {cn} from '~/utils/helpers';
 
+import type {TypographyVariantsProps} from '../theme/typography';
+
 import {text} from '../theme/text';
 import {typographyVariants} from '../theme/typography';
-import {DEFAULT_TAG, TextBase, type TextProps} from './text';
+import {DEFAULT_TAG} from './text';
 
 export interface ParagraphProps
-  extends Omit<TextProps, 'children'>,
-    Partial<HydrogenComponentProps> {
+  extends Partial<HydrogenComponentProps>,
+    TypographyVariantsProps {
+  as?: 'p' | 'span';
   color?: string;
   content: string;
 }
 
-const Paragraph = React.forwardRef<
-  HTMLDivElement | HTMLParagraphElement,
-  ParagraphProps
->(
+const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   (
     {
       alignment,
@@ -39,8 +39,7 @@ const Paragraph = React.forwardRef<
     ref,
   ) => {
     return (
-      <TextBase
-        asChild
+      <Tag
         className={cn(
           typographyVariants({
             alignment,
@@ -55,8 +54,8 @@ const Paragraph = React.forwardRef<
         style={{color}}
         {...props}
       >
-        <Tag>{content}</Tag>
-      </TextBase>
+        {content}
+      </Tag>
     );
   },
 );

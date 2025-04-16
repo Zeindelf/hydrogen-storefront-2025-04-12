@@ -64,7 +64,6 @@ const size = {
 const alignment = {
   options: {
     center: 'text-center',
-    default: '',
     left: 'text-left',
     right: 'text-right',
   },
@@ -76,7 +75,7 @@ const alignment = {
         {icon: 'align-end-vertical', label: 'Right', value: 'right'},
       ],
     },
-    defaultValue: 'default',
+    defaultValue: 'center',
     label: 'Text alignment',
     name: 'alignment',
     type: 'toggle-group',
@@ -170,10 +169,39 @@ const weight = {
   } as BasicInput,
 };
 
+const variant = {
+  options: {
+    blog: 'text-3xl font-semibold tracking-tight lg:leading-tight lg:text-5xl',
+    'blog-section':
+      '!mt-10 mb-6 text-3xl text-center font-normal tracking-tight',
+    destructive: 'text-destructive',
+    muted: 'text-muted-foreground',
+    page: 'text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug',
+    product: 'text-xl lg:text-2xl font-normal mb-2 lg:mb-4 tracking-tight',
+    section: 'text-2xl font-bold tracking-tight mb-2',
+  },
+  schema: {
+    configs: {
+      options: [
+        {label: 'Blog', value: 'blog'},
+        {label: 'Blog Section', value: 'blog-section'},
+        {label: 'Page', value: 'page'},
+        {label: 'Section', value: 'section'},
+      ],
+    },
+    defaultValue: 'section',
+    helpText: '<p>Pre-defined values from theme</p>',
+    label: 'Variant',
+    name: 'variant',
+    type: 'select',
+  } as BasicInput,
+};
+
 export const text = {
   alignment,
   letterSpacing,
   lineHeight,
   size,
+  variant,
   weight,
 };

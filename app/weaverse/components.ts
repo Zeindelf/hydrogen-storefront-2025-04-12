@@ -1,8 +1,10 @@
 import type {HydrogenComponent} from '@weaverse/hydrogen';
 
+/** Layouts */
+import * as Heading from '~/layout/heading/title';
 import * as Paragraph from '~/layout/text/paragraph';
+/** Sections */
 import * as CollectionList from '~/sections/collection-list';
-import * as Heading from '~/sections/heading';
 import * as Spacer from '~/sections/spacer';
 import * as SubHeading from '~/sections/subheading';
 

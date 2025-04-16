@@ -155,9 +155,9 @@ module.exports = {
         md: '0.75rem',
         sm: '0.625rem',
       },
-    },
-    zIndex: {
-      1: '1',
+      zIndex: {
+        1: '1',
+      },
     },
   },
 };

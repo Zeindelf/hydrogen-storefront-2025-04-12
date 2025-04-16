@@ -2,9 +2,7 @@ import type {MetaFunction} from '@remix-run/react';
 import type {SeoConfig} from '@shopify/hydrogen';
 import type {LoaderFunctionArgs} from '@shopify/remix-oxygen';
 
-import {Link} from '~/components/ui/link';
 import {getSeoMetaFromMatches, mergeMeta} from '~/seo/meta';
-import {createCollectionUrl, createProductUrl} from '~/utils/shopify';
 import {WeaverseContent} from '~/weaverse';
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -41,24 +39,6 @@ export const meta: MetaFunction<typeof loader> = mergeMeta(({matches}) =>
 export default function HomepageRoute() {
   return (
     <>
-      <div className="flex gap-4">
-        <Link
-          ariaLabel=""
-          prefetch="intent"
-          to={createCollectionUrl('lancamentos')}
-        >
-          Collection
-        </Link>
-        <Link
-          ariaLabel=""
-          prefetch="intent"
-          to={createProductUrl('saia-curta-feminina-em-malha-matelasse-rosa')}
-        >
-          Product
-        </Link>
-      </div>
-
-      <hr />
       <WeaverseContent />
     </>
   );

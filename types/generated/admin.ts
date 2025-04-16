@@ -26786,6 +26786,12 @@ export enum MarketingActivityUserErrorCode {
   MarketingActivityCurrencyCodeMismatch = 'MARKETING_ACTIVITY_CURRENCY_CODE_MISMATCH',
   /** Marketing activity does not exist. */
   MarketingActivityDoesNotExist = 'MARKETING_ACTIVITY_DOES_NOT_EXIST',
+  /** A marketing activity with the same remote ID already exists. */
+  MarketingActivityWithRemoteIdAlreadyExists = 'MARKETING_ACTIVITY_WITH_REMOTE_ID_ALREADY_EXISTS',
+  /** A marketing activity with the same URL parameter value already exists. */
+  MarketingActivityWithUrlParameterValueAlreadyExists = 'MARKETING_ACTIVITY_WITH_URL_PARAMETER_VALUE_ALREADY_EXISTS',
+  /** A marketing activity with the same UTM campaign, medium, and source already exists. */
+  MarketingActivityWithUtmCampaignAlreadyExists = 'MARKETING_ACTIVITY_WITH_UTM_CAMPAIGN_ALREADY_EXISTS',
   /** Marketing activity is not valid, the associated marketing event does not exist. */
   MarketingEventDoesNotExist = 'MARKETING_EVENT_DOES_NOT_EXIST',
   /** Non-hierarchical marketing activities must have UTM parameters or a URL parameter value. */
@@ -27445,6 +27451,8 @@ export type MediaWarning = {
 export enum MediaWarningCode {
   /** 3D model physical size might be invalid. The dimensions of your model are very large. Consider reviewing your model to ensure they are correct. */
   ModelLargePhysicalSize = 'MODEL_LARGE_PHYSICAL_SIZE',
+  /** The thumbnail failed to regenerate.Try applying the changes again to regenerate the thumbnail. */
+  ModelPreviewImageFail = 'MODEL_PREVIEW_IMAGE_FAIL',
   /** 3D model physical size might be invalid. The dimensions of your model are very small. Consider reviewing your model to ensure they are correct. */
   ModelSmallPhysicalSize = 'MODEL_SMALL_PHYSICAL_SIZE'
 }
@@ -28566,6 +28574,8 @@ export enum MetafieldDefinitionUpdateUserErrorCode {
   CapabilityRequiredButDisabled = 'CAPABILITY_REQUIRED_BUT_DISABLED',
   /** Owner type can't be used in this mutation. */
   DisallowedOwnerType = 'DISALLOWED_OWNER_TYPE',
+  /** A duplicate option. */
+  DuplicateOption = 'DUPLICATE_OPTION',
   /** The maximum limit of grants per definition type has been exceeded. */
   GrantLimitExceeded = 'GRANT_LIMIT_EXCEEDED',
   /** An internal error occurred. */
@@ -28578,6 +28588,8 @@ export enum MetafieldDefinitionUpdateUserErrorCode {
   InvalidInput = 'INVALID_INPUT',
   /** The input combination is invalid. */
   InvalidInputCombination = 'INVALID_INPUT_COMBINATION',
+  /** An invalid option. */
+  InvalidOption = 'INVALID_OPTION',
   /** Action cannot proceed. Definition is currently in use. */
   MetafieldDefinitionInUse = 'METAFIELD_DEFINITION_IN_USE',
   /** You cannot change the metaobject definition pointed to by a metaobject reference metafield definition. */
@@ -43866,6 +43878,8 @@ export enum ProductVariantsBulkDeleteUserErrorCode {
   CannotDeleteLastVariant = 'CANNOT_DELETE_LAST_VARIANT',
   /** Product does not exist. */
   ProductDoesNotExist = 'PRODUCT_DOES_NOT_EXIST',
+  /** Product is suspended. */
+  ProductSuspended = 'PRODUCT_SUSPENDED',
   /** Operation is not supported for a combined listing parent product. */
   UnsupportedCombinedListingParentOperation = 'UNSUPPORTED_COMBINED_LISTING_PARENT_OPERATION'
 }

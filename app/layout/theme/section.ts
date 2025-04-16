@@ -2,19 +2,17 @@ import type {BasicInput} from '@weaverse/hydrogen';
 
 const width = {
   options: {
-    fixed: 'w-full h-full max-w-page mx-auto',
+    container: 'container w-full h-full',
     full: 'w-full h-full',
-    stretch: 'w-full h-full',
   },
   schema: {
     configs: {
       options: [
-        {label: 'Full page', value: 'full'},
-        {label: 'Stretch', value: 'stretch'},
-        {label: 'Fixed', value: 'fixed'},
+        {label: 'Container (Default)', value: 'container'},
+        {label: 'Full Screen', value: 'full'},
       ],
     },
-    defaultValue: 'fixed',
+    defaultValue: 'container',
     label: 'Content width',
     name: 'width',
     type: 'select',
@@ -47,7 +45,7 @@ const gap = {
       step: 4,
       unit: 'px',
     },
-    defaultValue: 20,
+    defaultValue: 16,
     label: 'Items spacing',
     name: 'gap',
     type: 'range',
