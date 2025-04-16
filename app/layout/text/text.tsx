@@ -9,7 +9,7 @@ import type {TypographyVariantsProps} from '../theme/typography';
 
 import {typographyVariants} from '../theme/typography';
 
-const DEFAULT_TAG = 'p' as const;
+export const DEFAULT_TAG = 'p' as const;
 
 export const textElements = [
   'blockquote',

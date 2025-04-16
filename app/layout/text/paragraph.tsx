@@ -8,10 +8,9 @@ import * as React from 'react';
 
 import {cn} from '~/utils/helpers';
 
-import type {TextProps} from './text';
-
 import {text} from '../theme/text';
 import {typographyVariants} from '../theme/typography';
+import {DEFAULT_TAG, TextBase, type TextProps} from './text';
 
 export interface ParagraphProps
   extends Omit<TextProps, 'children'>,
@@ -27,6 +26,7 @@ const Paragraph = React.forwardRef<
   (
     {
       alignment,
+      as: Tag = DEFAULT_TAG,
       className,
       color,
       content,
@@ -39,7 +39,8 @@ const Paragraph = React.forwardRef<
     ref,
   ) => {
     return (
-      <p
+      <TextBase
+        asChild
         className={cn(
           typographyVariants({
             alignment,
@@ -50,11 +51,12 @@ const Paragraph = React.forwardRef<
             weight,
           }),
         )}
-        dangerouslySetInnerHTML={{__html: content}}
         ref={ref}
         style={{color}}
         {...props}
-      />
+      >
+        <Tag>{content}</Tag>
+      </TextBase>
     );
   },
 );
