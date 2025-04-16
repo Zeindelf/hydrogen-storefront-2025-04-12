@@ -53,7 +53,7 @@ export const Overlay = React.forwardRef<
 Overlay.displayName = DrawerPrimitive.Overlay.displayName;
 
 const drawerContentVariants = cva(
-  'z-50 fixed flex h-auto flex-col border bg-background',
+  'fixed z-50 flex h-auto flex-col border bg-background',
   {
     compoundVariants: [
       {
