@@ -42636,7 +42636,9 @@ export enum ProductOptionsReorderUserErrorCode {
   /** Option value id does not exist. */
   OptionValueIdDoesNotExist = 'OPTION_VALUE_ID_DOES_NOT_EXIST',
   /** Product does not exist. */
-  ProductDoesNotExist = 'PRODUCT_DOES_NOT_EXIST'
+  ProductDoesNotExist = 'PRODUCT_DOES_NOT_EXIST',
+  /** Product is suspended. */
+  ProductSuspended = 'PRODUCT_SUSPENDED'
 }
 
 /** The price range of the product. */
@@ -43018,6 +43020,8 @@ export enum ProductSetUserErrorCode {
   ProductDoesNotExist = 'PRODUCT_DOES_NOT_EXIST',
   /** Must specify product options when updating variants. */
   ProductOptionsInputMissing = 'PRODUCT_OPTIONS_INPUT_MISSING',
+  /** Product is suspended. */
+  ProductSuspended = 'PRODUCT_SUSPENDED',
   /** Product variant does not exist. */
   ProductVariantDoesNotExist = 'PRODUCT_VARIANT_DOES_NOT_EXIST',
   /** Must specify variants when updating options. */

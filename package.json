@@ -32,6 +32,7 @@
     "case-anything": "^3.1.2",
     "class-variance-authority": "^0.7.1",
     "crypto-js": "^4.2.0",
+    "embla-carousel-react": "^8.6.0",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
     "intl-parse-accept-language": "^1.0.0",
