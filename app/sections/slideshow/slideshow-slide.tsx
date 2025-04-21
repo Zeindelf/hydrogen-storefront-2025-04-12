@@ -26,6 +26,7 @@ export const textContentVariants = cva(
     variants: {
       contentPosition: layout.contentPosition.options,
       gap: layout.gap.options,
+      size: layout.size.options,
       verticalPadding: layout.verticalPadding.options,
       width: layout.width.options,
     },
@@ -54,6 +55,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
       overlayColor,
       overlayColorHover,
       overlayOpacity,
+      size,
       verticalPadding,
       width,
       ...props
@@ -62,8 +64,18 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
   ) => {
     const mobile = parseWeaverseImage(mobileImage);
     const desktop = parseWeaverseImage(desktopImage);
+
+    const style = {
+      '--content-size': `${size}%`,
+    } as React.CSSProperties;
+
     return (
-      <div ref={ref} {...props} className="group relative size-full">
+      <article
+        ref={ref}
+        style={style}
+        {...props}
+        className="group relative size-full"
+      >
         <Overlay
           enableOverlay={enableOverlay}
           overlayColor={overlayColor}
@@ -76,7 +88,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
           mobile={mobile}
           {...props}
         />
-        <article
+        <div
           className={cn(
             'absolute inset-0 z-[2]',
             textContentVariants({
@@ -87,10 +99,9 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
             }),
           )}
         >
-          {children}
-        </article>
-      </div>
-      // </Carousel.Item>
+          <div className="md:w-[var(--content-size)]">{children}</div>
+        </div>
+      </article>
     );
   },
 );
@@ -107,6 +118,7 @@ export const schema: HydrogenComponentSchema = {
         {...layout.gap.schema},
         {...layout.verticalPadding.schema},
         {...layout.width.schema},
+        {...layout.size.schema},
       ],
     },
     ...overlayInspector,

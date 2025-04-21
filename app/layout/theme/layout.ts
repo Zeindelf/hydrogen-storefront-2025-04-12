@@ -3,19 +3,23 @@ import type {BasicInput} from '@weaverse/hydrogen';
 const contentPosition = {
   options: {
     'bottom center':
-      'items-center justify-end [&_.paragraph]:[text-align:center]',
-    'bottom left': 'items-start justify-end [&_.paragraph]:[text-align:left]',
-    'bottom right': 'items-end justify-end [&_.paragraph]:[text-align:right]',
+      'items-center justify-end [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
+    'bottom left':
+      'items-start justify-end [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
+    'bottom right':
+      'items-end justify-end [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
     'center center':
-      'items-center justify-center [&_.paragraph]:[text-align:center]',
+      'items-center justify-center [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
     'center left':
-      'items-start justify-center [&_.paragraph]:[text-align:left]',
+      'items-start justify-center [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
     'center right':
-      'items-end justify-center [&_.paragraph]:[text-align:right]',
+      'items-end justify-center [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
     'top center':
-      'items-center justify-start [&_.paragraph]:[text-align:center]',
-    'top left': 'items-start justify-start [&_.paragraph]:[text-align:left]',
-    'top right': 'items-end justify-start [&_.paragraph]:[text-align:right]',
+      'items-center justify-start [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
+    'top left':
+      'items-start justify-start [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
+    'top right':
+      'items-end justify-start [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
   },
   schema: {
     defaultValue: 'center center',
@@ -54,6 +58,22 @@ const gap = {
     defaultValue: 16,
     label: 'Items spacing',
     name: 'gap',
+    type: 'range',
+  } as BasicInput,
+};
+
+const size = {
+  options: {},
+  schema: {
+    configs: {
+      max: 100,
+      min: 25,
+      step: 5,
+      unit: '%',
+    },
+    defaultValue: 100,
+    label: 'Size content',
+    name: 'size',
     type: 'range',
   } as BasicInput,
 };
@@ -107,6 +127,7 @@ const width = {
 export const layout = {
   contentPosition,
   gap,
+  size,
   verticalPadding,
   width,
 };

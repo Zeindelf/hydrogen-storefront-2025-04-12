@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import {Carousel} from '~/components/ui/carousel';
 import {Section} from '~/layout/section';
+import {carousel} from '~/layout/theme/carousel';
 import {cn} from '~/utils/helpers';
 
 const slideshowDotsVariants = cva(
@@ -63,11 +64,17 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
             <>
               <Carousel.Previous
                 ariaLabel="Imagem anterior"
-                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 max-md:left-2"
+                className={cn(
+                  carousel.arrows.options.vertical,
+                  'left-4 max-md:left-2',
+                )}
               />
               <Carousel.Next
                 ariaLabel="Próxima imagem"
-                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 max-md:right-2"
+                className={cn(
+                  carousel.arrows.options.vertical,
+                  'right-4 max-md:right-2',
+                )}
               />
             </>
           )}
