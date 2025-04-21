@@ -1,4 +1,5 @@
-import {CollectionList} from './collection-list';
+import type {HydrogenComponent} from '@weaverse/hydrogen';
 
-export {schema} from './collection-list';
-export default CollectionList;
+import * as CollectionList from './collection-list';
+
+export const CollectionListComponents: HydrogenComponent[] = [CollectionList];

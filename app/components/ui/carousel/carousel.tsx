@@ -1,3 +1,6 @@
+import type {VariantProps} from 'class-variance-authority';
+
+import {cva} from 'class-variance-authority';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react';
@@ -248,19 +251,34 @@ export const Item = React.forwardRef<
 });
 Item.displayName = 'Carousel.Item';
 
+const NAV_ICON_SIZE = 20;
+
+export const carouselArrowsVariants = cva(
+  'size-8 rounded border bg-background shadow-lg',
+  {
+    variants: {
+      placement: {
+        vertical: 'absolute top-1/2 z-10 -translate-y-1/2',
+      },
+    },
+  },
+);
+
+export type CarouselArrowsVariants = VariantProps<
+  typeof carouselArrowsVariants
+>;
+
 interface CarouselNavigationProps
-  extends Omit<React.ComponentProps<typeof Button>, 'ariaLabel' | 'size'> {
+  extends CarouselArrowsVariants,
+    Omit<React.ComponentProps<typeof Button>, 'ariaLabel' | 'size'> {
   ariaLabel?: string;
   size?: number;
 }
 
-const NAV_ICON_SIZE = 20;
-const NAV_STYLES = 'size-8 rounded border shadow-lg bg-background';
-
 export const Previous = React.forwardRef<
   HTMLButtonElement,
   CarouselNavigationProps
->(({className, size = NAV_ICON_SIZE, ...props}, ref) => {
+>(({className, placement, size = NAV_ICON_SIZE, ...props}, ref) => {
   const {carouselApi, scrollPrev} = useCarousel();
 
   if (!carouselApi?.canScrollPrev() && !carouselApi?.canScrollNext()) {
@@ -270,7 +288,7 @@ export const Previous = React.forwardRef<
   return (
     <Button
       ariaLabel="Imagem do banner anterior"
-      className={cn(NAV_STYLES, className)}
+      className={cn(carouselArrowsVariants({className, placement}))}
       disabled={!carouselApi?.canScrollPrev()}
       onClick={scrollPrev}
       ref={ref}
@@ -288,7 +306,7 @@ Previous.displayName = 'Carousel.Previous';
 export const Next = React.forwardRef<
   HTMLButtonElement,
   CarouselNavigationProps
->(({className, size = NAV_ICON_SIZE, ...props}, ref) => {
+>(({className, placement, size = NAV_ICON_SIZE, ...props}, ref) => {
   const {carouselApi, scrollNext} = useCarousel();
 
   if (!carouselApi?.canScrollPrev() && !carouselApi?.canScrollNext()) {
@@ -298,7 +316,7 @@ export const Next = React.forwardRef<
   return (
     <Button
       ariaLabel="Próxima imagem do banner"
-      className={cn(NAV_STYLES, className)}
+      className={cn(carouselArrowsVariants({className, placement}))}
       disabled={!carouselApi?.canScrollNext()}
       onClick={scrollNext}
       ref={ref}

@@ -22,18 +22,13 @@ export type OverlayProps = {
   className?: string;
   enableOverlay: boolean;
   overlayColor: string;
-  overlayColorHover: string;
   overlayOpacity: number;
 };
 
 export const Overlay = React.forwardRef<HTMLDivElement, OverlayProps>(
-  (
-    {className, enableOverlay, overlayColor, overlayColorHover, overlayOpacity},
-    ref,
-  ) => {
+  ({className, enableOverlay, overlayColor, overlayOpacity}, ref) => {
     const style = {
       '--overlay-color': overlayColor,
-      '--overlay-color-hover': overlayColorHover,
       margin: 0,
       opacity: overlayOpacity / 100,
     } as React.CSSProperties;
@@ -45,7 +40,6 @@ export const Overlay = React.forwardRef<HTMLDivElement, OverlayProps>(
         className={cn(
           'absolute inset-0 z-1 transition-colors duration-300',
           'bg-[var(--overlay-color)]',
-          'group-hover/overlay:bg-[var(--overlay-color-hover,var(--overlay-color))]',
           className,
         )}
         ref={ref}
@@ -67,12 +61,6 @@ export const overlayInputs: InspectorGroup['inputs'] = [
     defaultValue: '#000000',
     label: 'Overlay color',
     name: 'overlayColor',
-    type: 'color',
-  },
-  {
-    condition: 'enableOverlay.eq.true',
-    label: 'Overlay color (hover)',
-    name: 'overlayColorHover',
     type: 'color',
   },
   {

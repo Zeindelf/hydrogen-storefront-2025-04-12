@@ -53,7 +53,6 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
       gap,
       mobileImage,
       overlayColor,
-      overlayColorHover,
       overlayOpacity,
       size,
       verticalPadding,
@@ -71,15 +70,14 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
 
     return (
       <article
+        className="group relative size-full"
         ref={ref}
         style={style}
         {...props}
-        className="group relative size-full"
       >
         <Overlay
           enableOverlay={enableOverlay}
           overlayColor={overlayColor}
-          overlayColorHover={overlayColorHover}
           overlayOpacity={overlayOpacity}
         />
         <ArtDirectionImage
@@ -91,12 +89,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
         <div
           className={cn(
             'absolute inset-0 z-[2]',
-            textContentVariants({
-              contentPosition,
-              gap,
-              verticalPadding,
-              width,
-            }),
+            textContentVariants({contentPosition, gap, verticalPadding, width}),
           )}
         >
           <div className="md:w-[var(--content-size)]">{children}</div>
@@ -109,7 +102,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
 export default SlideshowSlide;
 
 export const schema: HydrogenComponentSchema = {
-  childTypes: ['subheading', 'heading', 'paragraph'],
+  childTypes: ['heading', 'paragraph'],
   inspector: [
     {
       group: 'Slide',
@@ -126,13 +119,13 @@ export const schema: HydrogenComponentSchema = {
       group: 'Image',
       inputs: [
         {
-          helpText: '<p>Recommended with: max 560px</p>',
+          helpText: '<p>Recommended max width: 560px</p>',
           label: 'Mobile Image',
           name: 'mobileImage',
           type: 'image',
         },
         {
-          helpText: '<p>Recommended width: max 2000px</p>',
+          helpText: '<p>Recommended max width: 2000px</p>',
           label: 'Desktop Image',
           name: 'desktopImage',
           type: 'image',
@@ -142,11 +135,6 @@ export const schema: HydrogenComponentSchema = {
   ],
   presets: {
     children: [
-      {
-        color: '#fff',
-        content: 'Subheading',
-        type: 'subheading',
-      },
       {
         color: '#fff',
         content: 'Slide with text overlay',
@@ -176,7 +164,6 @@ export const schema: HydrogenComponentSchema = {
     contentPosition: 'center center',
     desktopImage: IMAGES_PLACEHOLDERS.banner_1,
     enableOverlay: true,
-    // backgroundImage: IMAGES_PLACEHOLDERS.banner_1,
     mobileImage: IMAGES_PLACEHOLDERS.banner_2,
     overlayOpacity: 50,
     verticalPadding: 'large',

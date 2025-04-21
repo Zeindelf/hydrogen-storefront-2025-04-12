@@ -41744,7 +41744,7 @@ export type ProductCreateInput = {
    * For example, you can specify
    * [`bundles: true`](https://shopify.dev/docs/api/admin-graphql/latest/input-objects/ProductClaimOwnershipInput#field-bundles)
    * in the `claimOwnership` field to let an app add a
-   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/add-merchant-config-ui).
+   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/product-configuration-extension/add-merchant-config-ui).
    */
   claimOwnership?: InputMaybe<ProductClaimOwnershipInput>;
   /** A list of collection IDs to associate with the product. */
@@ -42135,7 +42135,7 @@ export type ProductInput = {
    * For example, you can specify
    * [`bundles: true`](https://shopify.dev/docs/api/admin-graphql/latest/input-objects/ProductClaimOwnershipInput#field-bundles)
    * in the `claimOwnership` field to let an app add a
-   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/add-merchant-config-ui).
+   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/product-configuration-extension/add-merchant-config-ui).
    */
   claimOwnership?: InputMaybe<ProductClaimOwnershipInput>;
   /** A list of collection IDs to associate with the product. */
@@ -42827,7 +42827,7 @@ export type ProductSetInput = {
    * For example, you can specify
    * [`bundles: true`](https://shopify.dev/docs/api/admin-graphql/latest/input-objects/ProductClaimOwnershipInput#field-bundles)
    * in the `claimOwnership` field to let an app add a
-   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/add-merchant-config-ui).
+   * [product configuration extension](https://shopify.dev/docs/apps/build/product-merchandising/bundles/product-configuration-extension/add-merchant-config-ui).
    */
   claimOwnership?: InputMaybe<ProductClaimOwnershipInput>;
   /** The IDs of collections that this product will be a member of. */

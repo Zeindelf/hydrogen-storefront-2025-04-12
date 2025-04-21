@@ -25,18 +25,18 @@ const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
     },
     ref,
   ) => {
+    const style = {
+      '--desktop-height': `${desktopHeight}px`,
+      '--mobile-height': `${mobileHeight}px`,
+      '--separator-color': separatorColor,
+      backgroundColor,
+    } as React.CSSProperties;
+
     return (
       <div
         className="flex h-[var(--mobile-height)] w-full items-center justify-center md:h-[var(--desktop-height)]"
         ref={ref}
-        style={
-          {
-            '--desktop-height': `${desktopHeight}px`,
-            '--mobile-height': `${mobileHeight}px`,
-            '--separator-color': separatorColor,
-            backgroundColor,
-          } as React.CSSProperties
-        }
+        style={style}
         {...rest}
       >
         {addSeparator && (

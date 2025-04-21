@@ -6,16 +6,16 @@ import type {SectionProps} from '~/layout/section';
 
 import {layoutInputs, Section} from '~/layout/section';
 
-export const CollectionList = forwardRef<HTMLElement, SectionProps>(
-  (props, ref) => {
-    const {children, ...rest} = props;
-    return (
-      <Section ref={ref} {...rest}>
-        {children}
-      </Section>
-    );
-  },
-);
+const CollectionList = forwardRef<HTMLElement, SectionProps>((props, ref) => {
+  const {children, ...rest} = props;
+  return (
+    <Section ref={ref} {...rest}>
+      {children}
+    </Section>
+  );
+});
+
+export default CollectionList;
 
 export const schema: HydrogenComponentSchema = {
   childTypes: ['subheading', 'heading', 'paragraph'],

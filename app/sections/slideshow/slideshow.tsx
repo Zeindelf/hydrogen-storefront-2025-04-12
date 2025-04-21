@@ -61,22 +61,11 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
       <Section className="group h-full" ref={ref} {...props}>
         <Carousel.Root opts={{loop}}>
           {showArrows && (
-            <>
-              <Carousel.Previous
-                ariaLabel="Imagem anterior"
-                className={cn(
-                  carousel.arrows.options.vertical,
-                  'left-4 max-md:left-2',
-                )}
-              />
-              <Carousel.Next
-                ariaLabel="Próxima imagem"
-                className={cn(
-                  carousel.arrows.options.vertical,
-                  'right-4 max-md:right-2',
-                )}
-              />
-            </>
+            <Carousel.Previous
+              ariaLabel="Imagem anterior"
+              className="left-4 max-md:left-2"
+              placement="vertical"
+            />
           )}
 
           <Carousel.Content className="ml-0">
@@ -86,6 +75,14 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
               </Carousel.Item>
             ))}
           </Carousel.Content>
+
+          {showArrows && (
+            <Carousel.Next
+              ariaLabel="Próxima imagem"
+              className="right-4 max-md:right-2"
+              placement="vertical"
+            />
+          )}
 
           {showDots && <Dots {...props} />}
         </Carousel.Root>
