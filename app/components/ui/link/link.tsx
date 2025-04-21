@@ -1,44 +1,28 @@
-import type {VariantProps} from 'class-variance-authority';
-
-import {
-  Link as RemixLink,
-  type LinkProps as RemixLinkProps,
-  NavLink as RemixNavLink,
-  type NavLinkProps as RemixNavLinkProps,
+import type {
+  LinkProps as RemixLinkProps,
+  NavLinkProps as RemixNavLinkProps,
 } from '@remix-run/react';
-import {cva} from 'class-variance-authority';
+
+import {Link as RemixLink, NavLink as RemixNavLink} from '@remix-run/react';
 import * as React from 'react';
 
 import {cn, externalRel} from '~/utils/helpers';
 
 import {Icons} from '../icons';
 
-export type LinkVariantsProps = VariantProps<typeof linkVariants>;
-export const linkVariants = cva(
-  ['aria-[current=page]:border-b aria-[current=page]:font-bold'],
-  {
-    variants: {
-      variant: {
-        primary: 'font-medium text-primary underline',
-      },
-    },
-  },
-);
+type BaseLinkProps = {
+  className?: RemixLinkProps['className'] | RemixNavLinkProps['className'];
+} & Omit<RemixLinkProps, 'className'>;
 
-export interface LinkProps extends BaseLinkProps, LinkVariantsProps {
+export interface LinkProps extends BaseLinkProps {
   ariaLabel: string;
   as?: 'Link' | 'NavLink';
   children: React.ReactNode;
-  decorated?: boolean;
   isExternal?: boolean;
   isLoading?: boolean;
   role?: string;
   title?: string;
 }
-
-type BaseLinkProps = {
-  className?: RemixLinkProps['className'] | RemixNavLinkProps['className'];
-} & Omit<RemixLinkProps, 'className'>;
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   (
@@ -47,13 +31,11 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       as = 'Link',
       children,
       className,
-      decorated,
       isExternal = false,
       isLoading,
       role,
       title,
       to,
-      variant,
       ...props
     },
     ref,
@@ -63,7 +45,10 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     return (
       <Comp
         aria-label={ariaLabel}
-        className={cn(linkVariants({className, variant}))}
+        className={cn(
+          'aria-[current=page]:border-b aria-[current=page]:font-bold',
+          className,
+        )}
         ref={ref}
         role={role}
         title={title || ariaLabel || 'Anchor link'}
@@ -83,23 +68,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
             </span>
           </>
         ) : (
-          <>
-            {decorated ? (
-              <span
-                className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom
-              bg-no-repeat
-              transition-[background-size]
-              duration-500
-              group-hover:bg-[length:100%_10px]
-              hover:bg-[length:100%_3px]
-              dark:from-primary/90 dark:to-primary"
-              >
-                {children}
-              </span>
-            ) : (
-              <>{children}</>
-            )}
-          </>
+          <>{children}</>
         )}
       </Comp>
     );

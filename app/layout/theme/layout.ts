@@ -3,23 +3,23 @@ import type {BasicInput} from '@weaverse/hydrogen';
 const contentPosition = {
   options: {
     'bottom center':
-      'items-center justify-end [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
+      'items-center justify-end [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center] [&_.button]:[align-self:center]',
     'bottom left':
-      'items-start justify-end [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
+      'items-start justify-end [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left] [&_.button]:[align-self:start]',
     'bottom right':
-      'items-end justify-end [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
+      'items-end justify-end [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right] [&_.button]:[align-self:end]',
     'center center':
-      'items-center justify-center [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
+      'items-center justify-center [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center] [&_.button]:[align-self:center]',
     'center left':
-      'items-start justify-center [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
+      'items-start justify-center [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left] [&_.button]:[align-self:start]',
     'center right':
-      'items-end justify-center [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
+      'items-end justify-center [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right] [&_.button]:[align-self:end]',
     'top center':
-      'items-center justify-start [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center]',
+      'items-center justify-start [&_.paragraph]:[text-align:center] [&_.heading]:[text-align:center] [&_.button]:[align-self:center]',
     'top left':
-      'items-start justify-start [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left]',
+      'items-start justify-start [&_.paragraph]:[text-align:left] [&_.heading]:[text-align:left] [&_.button]:[align-self:start]',
     'top right':
-      'items-end justify-start [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right]',
+      'items-end justify-start [&_.paragraph]:[text-align:right] [&_.heading]:[text-align:right] [&_.button]:[align-self:end]',
   },
   schema: {
     defaultValue: 'center center',

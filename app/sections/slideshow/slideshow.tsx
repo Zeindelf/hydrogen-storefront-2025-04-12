@@ -29,25 +29,23 @@ const slideshowDotsVariants = cva(
   },
 );
 
-export interface SlideshowDotsProps
-  extends VariantProps<typeof slideshowDotsVariants> {
+export type SlideshowDotsVariants = VariantProps<typeof slideshowDotsVariants>;
+
+export interface SlideshowDotsProps extends SlideshowDotsVariants {
   className?: string;
 }
 
 export function Dots({className, dotsPosition}: SlideshowDotsProps) {
   return (
     <Carousel.Dots
-      className={cn(slideshowDotsVariants({dotsPosition}), className)}
+      className={cn(slideshowDotsVariants({className, dotsPosition}))}
     />
   );
 }
 
-export type SlideshowDotsVariants = VariantProps<typeof slideshowDotsVariants>;
-
 export interface SlideshowProps
   extends HydrogenComponentProps,
     SlideshowDotsVariants {
-  dotsPosition: 'bottom' | 'left' | 'right' | 'top';
   effect?: 'fade' | 'slide';
   loop: boolean;
   showArrows: boolean;
@@ -55,9 +53,20 @@ export interface SlideshowProps
 }
 
 const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
-  ({children = [], loop, showArrows, showDots, ...props}, ref) => {
+  (
+    {
+      children = [],
+      className,
+      dotsPosition,
+      loop,
+      showArrows,
+      showDots,
+      ...props
+    },
+    ref,
+  ) => {
     return (
-      <Section className="group h-full" ref={ref} {...props}>
+      <Section className={cn('group h-full', className)} ref={ref} {...props}>
         <Carousel.Root opts={{loop}}>
           {showArrows && (
             <Carousel.Previous
@@ -68,9 +77,9 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
           )}
 
           <Carousel.Content className="ml-0">
-            {React.Children.map(children, (child, index) => (
+            {React.Children.map(children, (child) => (
               <Carousel.Item className="overflow-hidden pl-0" key={child.key}>
-                {React.cloneElement(child, {index})}
+                {React.cloneElement(child, {})}
               </Carousel.Item>
             ))}
           </Carousel.Content>
@@ -83,7 +92,7 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
             />
           )}
 
-          {showDots && <Dots {...props} />}
+          {showDots && <Dots dotsPosition={dotsPosition} />}
         </Carousel.Root>
       </Section>
     );

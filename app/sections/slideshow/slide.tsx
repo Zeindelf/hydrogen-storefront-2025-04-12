@@ -26,7 +26,6 @@ export const textContentVariants = cva(
     variants: {
       contentPosition: layout.contentPosition.options,
       gap: layout.gap.options,
-      size: layout.size.options,
       verticalPadding: layout.verticalPadding.options,
       width: layout.width.options,
     },
@@ -47,6 +46,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
   (
     {
       children,
+      className,
       contentPosition,
       desktopImage,
       enableOverlay,
@@ -54,7 +54,6 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
       mobileImage,
       overlayColor,
       overlayOpacity,
-      size,
       verticalPadding,
       width,
       ...props
@@ -64,35 +63,25 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
     const mobile = parseWeaverseImage(mobileImage);
     const desktop = parseWeaverseImage(desktopImage);
 
-    const style = {
-      '--content-size': `${size}%`,
-    } as React.CSSProperties;
-
     return (
       <article
-        className="group relative size-full"
-        ref={ref}
-        style={style}
         {...props}
+        className={cn('group relative size-full', className)}
+        ref={ref}
       >
         <Overlay
           enableOverlay={enableOverlay}
           overlayColor={overlayColor}
           overlayOpacity={overlayOpacity}
         />
-        <ArtDirectionImage
-          data={desktop}
-          desktop={desktop}
-          mobile={mobile}
-          {...props}
-        />
+        <ArtDirectionImage data={desktop} desktop={desktop} mobile={mobile} />
         <div
           className={cn(
             'absolute inset-0 z-[2]',
             textContentVariants({contentPosition, gap, verticalPadding, width}),
           )}
         >
-          <div className="md:w-[var(--content-size)]">{children}</div>
+          {children}
         </div>
       </article>
     );
@@ -102,7 +91,7 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
 export default SlideshowSlide;
 
 export const schema: HydrogenComponentSchema = {
-  childTypes: ['heading', 'paragraph'],
+  childTypes: ['heading', 'paragraph', 'button'],
   inspector: [
     {
       group: 'Slide',
@@ -111,7 +100,6 @@ export const schema: HydrogenComponentSchema = {
         {...layout.gap.schema},
         {...layout.verticalPadding.schema},
         {...layout.width.schema},
-        {...layout.size.schema},
       ],
     },
     ...overlayInspector,

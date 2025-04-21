@@ -51,12 +51,11 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
             weight,
           }),
         )}
+        dangerouslySetInnerHTML={{__html: content}}
         ref={ref}
         style={{color}}
         {...props}
-      >
-        {content}
-      </Tag>
+      />
     );
   },
 );
@@ -72,7 +71,7 @@ export const textInputs: InspectorGroup['inputs'] = [
     label: 'Content',
     name: 'content',
     placeholder,
-    type: 'textarea',
+    type: 'richtext',
   },
   {label: 'Text color', name: 'color', type: 'color'},
   {...text.size.schema},
