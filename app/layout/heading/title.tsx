@@ -53,6 +53,7 @@ const Title = React.forwardRef<
     return (
       <Tag
         className={cn(
+          'heading select-none',
           typographyVariants({
             alignment,
             className,

@@ -41,6 +41,7 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
     return (
       <Tag
         className={cn(
+          'paragraph select-none',
           typographyVariants({
             alignment,
             className,

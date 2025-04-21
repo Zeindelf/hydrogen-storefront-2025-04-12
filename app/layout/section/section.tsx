@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import {cn} from '~/utils/helpers';
 
-import {section} from '../theme/section';
+import {layout} from '../theme/layout';
 
 export const DEFAULT_TAG = 'section' as const;
 
@@ -29,7 +29,7 @@ const sectionVariants = cva('relative', {
     overflow: 'hidden',
   },
   variants: {
-    gap: section.gap.options,
+    gap: layout.gap.options,
     layout: {
       account: 'flex flex-col max-md:space-y-8 lg:flex-row',
       breadcrumb: 'border-t py-5 lg:py-6',
@@ -41,8 +41,8 @@ const sectionVariants = cva('relative', {
       hidden: 'overflow-hidden',
       unset: '',
     },
-    verticalPadding: section.verticalPadding.options,
-    width: section.width.options,
+    verticalPadding: layout.verticalPadding.options,
+    width: layout.width.options,
   },
 });
 
@@ -99,9 +99,9 @@ export const Section = React.forwardRef<SectionElement, SectionProps>(
 );
 
 export const layoutInputs: InspectorGroup['inputs'] = [
-  {...section.gap.schema},
-  {...section.verticalPadding.schema},
-  {...section.width.schema},
+  {...layout.gap.schema},
+  {...layout.verticalPadding.schema},
+  {...layout.width.schema},
 ];
 
 export const sectionInspector: InspectorGroup[] = [

@@ -10,52 +10,43 @@ import * as React from 'react';
 
 import {Carousel} from '~/components/ui/carousel';
 import {Section} from '~/layout/section';
-
-const slideshowVariants = cva('group h-full', {
-  compoundVariants: [
-    {
-      className: 'h-screen',
-      height: 'full',
-    },
-  ],
-  defaultVariants: {
-    height: 'large',
-  },
-  variants: {
-    height: {
-      full: '',
-      large: 'h-[70vh] lg:h-[80vh]',
-      medium: 'h-[50vh] lg:h-[60vh]',
-      small: 'h-[40vh] lg:h-[50vh]',
-    },
-  },
-});
+import {cn} from '~/utils/helpers';
 
 const slideshowDotsVariants = cva(
-  'w- absolute z-1 flex !w-auto items-center justify-center gap-4 px-2.5',
+  'absolute z-1 flex !w-auto items-center justify-center gap-4 px-2.5',
   {
     defaultVariants: {
       dotsPosition: 'bottom',
     },
     variants: {
       dotsPosition: {
-        bottom: '!inset-x-0 !bottom-10 !top-auto',
+        bottom: '!inset-x-0 !bottom-0 !top-auto',
         left: '!inset-y-0 !left-5 !right-auto flex-col',
         right: '!inset-y-0 !left-auto !right-5 flex-col',
-        top: '!inset-x-0 !bottom-auto !top-10',
+        top: '!inset-x-0 !bottom-auto !top-0',
       },
     },
   },
 );
 
-export type SlideshowVariantsProps = VariantProps<typeof slideshowVariants>;
+export interface SlideshowDotsProps
+  extends VariantProps<typeof slideshowDotsVariants> {
+  className?: string;
+}
+
+export function Dots({className, dotsPosition}: SlideshowDotsProps) {
+  return (
+    <Carousel.Dots
+      className={cn(slideshowDotsVariants({dotsPosition}), className)}
+    />
+  );
+}
 
 export type SlideshowDotsVariants = VariantProps<typeof slideshowDotsVariants>;
 
 export interface SlideshowProps
   extends HydrogenComponentProps,
-    SlideshowDotsVariants,
-    SlideshowVariantsProps {
+    SlideshowDotsVariants {
   dotsPosition: 'bottom' | 'left' | 'right' | 'top';
   effect?: 'fade' | 'slide';
   loop: boolean;
@@ -64,57 +55,32 @@ export interface SlideshowProps
 }
 
 const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
-  (
-    {children = [], dotsPosition, height, loop, showArrows, showDots, ...props},
-    ref,
-  ) => {
+  ({children = [], loop, showArrows, showDots, ...props}, ref) => {
     return (
-      <Section className={slideshowVariants({height})} ref={ref} {...props}>
+      <Section className="group h-full" ref={ref} {...props}>
         <Carousel.Root opts={{loop}}>
           {showArrows && (
             <>
               <Carousel.Previous
                 ariaLabel="Imagem anterior"
-                className="max-md:left-2"
+                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 max-md:left-2"
               />
               <Carousel.Next
                 ariaLabel="Próxima imagem"
-                className="max-md:right-2"
+                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 max-md:right-2"
               />
             </>
           )}
 
           <Carousel.Content className="ml-0">
-            {children}
-            {/* {children.map((child, idx) => (
-              <Carousel.Item
-                className="overflow-hidden pl-0 md:rounded-lg"
-                key={idx}
-              >
-                {child}
+            {React.Children.map(children, (child, index) => (
+              <Carousel.Item className="overflow-hidden pl-0" key={child.key}>
+                {React.cloneElement(child, {index})}
               </Carousel.Item>
-            ))} */}
-            {/* {heroData.map((hero, idx) => (
-              <Carousel.Item
-                className="overflow-hidden pl-0 md:rounded-lg"
-                key={hero.title}
-              >
-                <Link
-                  ariaLabel={`Imagem ${idx + 1} do banner principal`}
-                  title={hero.title}
-                  to={hero.url}
-                >
-                  <ArtDirectionImage
-                    alt={hero.title}
-                    desktop={hero.desktopImage.url}
-                    loading={getImageLoadingPriority(idx, 1)}
-                    mobile={hero.mobileImage.url}
-                    src={hero.placeholder}
-                  />
-                </Link>
-              </Carousel.Item>
-            ))} */}
+            ))}
           </Carousel.Content>
+
+          {showDots && <Dots {...props} />}
         </Carousel.Root>
       </Section>
     );
@@ -124,20 +90,6 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
 export default Slideshow;
 
 export const slideshowInputs: InspectorGroup['inputs'] = [
-  {
-    configs: {
-      options: [
-        {label: 'Small', value: 'small'},
-        {label: 'Medium', value: 'medium'},
-        {label: 'Large', value: 'large'},
-        {label: 'Fullscreen', value: 'full'},
-      ],
-    },
-    defaultValue: 'full',
-    label: 'Section height',
-    name: 'height',
-    type: 'select',
-  },
   {
     configs: {
       options: [

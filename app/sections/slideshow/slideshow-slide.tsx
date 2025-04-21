@@ -1,7 +1,6 @@
 import type {
   HydrogenComponentProps,
   HydrogenComponentSchema,
-  WeaverseImage,
 } from '@weaverse/hydrogen';
 import type {VariantProps} from 'class-variance-authority';
 
@@ -9,71 +8,38 @@ import {IMAGES_PLACEHOLDERS} from '@weaverse/hydrogen';
 import {cva} from 'class-variance-authority';
 import * as React from 'react';
 
-import {ArtDirectionImage} from '~/components/resources/art-direction-image';
-import {Carousel} from '~/components/ui/carousel';
-import {Link} from '~/components/ui/link';
-import {layoutInputs} from '~/layout/section';
-import {cn, getImageLoadingPriority} from '~/utils/helpers';
+import type {OverlayProps} from '~/layout/overlay';
+import type {WeaverseImageProps} from '~/layout/weaverse-image';
 
-const variants = cva('flex size-full flex-col [&_.paragraph]:mx-[unset]', {
-  defaultVariants: {
-    contentPosition: 'bottom left',
-  },
-  variants: {
-    contentPosition: {
-      'bottom center':
-        'items-center justify-end [&_.paragraph]:[text-align:center]',
-      'bottom left': 'items-start justify-end [&_.paragraph]:[text-align:left]',
-      'bottom right': 'items-end justify-end [&_.paragraph]:[text-align:right]',
-      'center center':
-        'items-center justify-center [&_.paragraph]:[text-align:center]',
-      'center left':
-        'items-start justify-center [&_.paragraph]:[text-align:left]',
-      'center right':
-        'items-end justify-center [&_.paragraph]:[text-align:right]',
-      'top center':
-        'items-center justify-start [&_.paragraph]:[text-align:center]',
-      'top left': 'items-start justify-start [&_.paragraph]:[text-align:left]',
-      'top right': 'items-end justify-start [&_.paragraph]:[text-align:right]',
+import {ArtDirectionImage} from '~/components/resources/art-direction-image';
+import {Overlay, overlayInspector} from '~/layout/overlay';
+import {layout} from '~/layout/theme/layout';
+import {parseWeaverseImage} from '~/layout/weaverse-image';
+import {cn} from '~/utils/helpers';
+
+export const textContentVariants = cva(
+  'flex size-full flex-col [&_.paragraph]:mx-[unset]',
+  {
+    defaultVariants: {
+      contentPosition: 'bottom center',
     },
-    gap: {
-      0: '',
-      12: 'space-y-3',
-      16: 'space-y-4',
-      20: 'space-y-5',
-      24: 'space-y-3 lg:space-y-6',
-      28: 'space-y-3.5 lg:space-y-7',
-      32: 'space-y-4 lg:space-y-8',
-      36: 'space-y-4 lg:space-y-9',
-      4: 'space-y-1',
-      40: 'space-y-5 lg:space-y-10',
-      44: 'space-y-5 lg:space-y-11',
-      48: 'space-y-6 lg:space-y-12',
-      52: 'space-y-6 lg:space-y-[52px]',
-      56: 'space-y-7 lg:space-y-14',
-      60: 'space-y-7 lg:space-y-[60px]',
-      8: 'space-y-2',
-    },
-    verticalPadding: {
-      large: 'py-12 md:py-24 lg:py-32',
-      medium: 'py-8 md:py-12 lg:py-16',
-      none: '',
-      small: 'py-4 md:py-6 lg:py-8',
-    },
-    width: {
-      fixed: 'max-w-page mx-auto px-3 md:px-10 lg:px-16',
-      full: '',
-      stretch: 'px-3 md:px-10 lg:px-16',
+    variants: {
+      contentPosition: layout.contentPosition.options,
+      gap: layout.gap.options,
+      verticalPadding: layout.verticalPadding.options,
+      width: layout.width.options,
     },
   },
-});
+);
+
+export type TextContentVariantsProps = VariantProps<typeof textContentVariants>;
 
 export interface SlideProps
   extends HydrogenComponentProps,
-    VariantProps<typeof variants> {
-  backgroundColor: string;
-  desktopImage: string | WeaverseImage;
-  mobileImage: string | WeaverseImage;
+    OverlayProps,
+    TextContentVariantsProps {
+  desktopImage: WeaverseImageProps['data'];
+  mobileImage: WeaverseImageProps['data'];
 }
 
 const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
@@ -82,54 +48,49 @@ const SlideshowSlide = React.forwardRef<HTMLDivElement, SlideProps>(
       children,
       contentPosition,
       desktopImage,
+      enableOverlay,
       gap,
       mobileImage,
+      overlayColor,
+      overlayColorHover,
+      overlayOpacity,
       verticalPadding,
       width,
       ...props
     },
     ref,
   ) => {
-    const dataMobile =
-      typeof mobileImage === 'string'
-        ? {altText: 'Section background', url: mobileImage}
-        : mobileImage;
-
-    const dataDesktop =
-      typeof desktopImage === 'string'
-        ? {altText: 'Section background', url: desktopImage}
-        : desktopImage;
+    const mobile = parseWeaverseImage(mobileImage);
+    const desktop = parseWeaverseImage(desktopImage);
     return (
-      // <div ref={ref} {...props} className="size-full">
-      //   <div
-      //     className={variants({contentPosition, gap, verticalPadding, width})}
-      //   >
-      //     {children}
-      //   </div>
-      // </div>
-      <Carousel.Item
-        className={cn(
-          'overflow-hidden pl-0 md:rounded-lg',
-          variants({contentPosition, gap, verticalPadding, width}),
-        )}
-        ref={ref}
-        {...props}
-      >
-        <Link
-          ariaLabel={`Imagem do banner principal`}
-          title={dataDesktop.altText}
-          to="/"
+      <div ref={ref} {...props} className="group relative size-full">
+        <Overlay
+          enableOverlay={enableOverlay}
+          overlayColor={overlayColor}
+          overlayColorHover={overlayColorHover}
+          overlayOpacity={overlayOpacity}
+        />
+        <ArtDirectionImage
+          data={desktop}
+          desktop={desktop}
+          mobile={mobile}
+          {...props}
+        />
+        <article
+          className={cn(
+            'absolute inset-0 z-[2]',
+            textContentVariants({
+              contentPosition,
+              gap,
+              verticalPadding,
+              width,
+            }),
+          )}
         >
-          <ArtDirectionImage
-            alt={dataDesktop.altText}
-            desktop={desktopImage as WeaverseImage}
-            loading={getImageLoadingPriority(1, 1)}
-            mobile={mobileImage as WeaverseImage}
-            src={dataMobile.url}
-          />
           {children}
-        </Link>
-      </Carousel.Item>
+        </article>
+      </div>
+      // </Carousel.Item>
     );
   },
 );
@@ -142,28 +103,24 @@ export const schema: HydrogenComponentSchema = {
     {
       group: 'Slide',
       inputs: [
-        {
-          defaultValue: 'center center',
-          label: 'Content position',
-          name: 'contentPosition',
-          type: 'position',
-        },
-        ...layoutInputs.filter(
-          (inp) => inp.name !== 'divider' && inp.name !== 'borderRadius',
-        ),
+        {...layout.contentPosition.schema},
+        {...layout.gap.schema},
+        {...layout.verticalPadding.schema},
+        {...layout.width.schema},
       ],
     },
+    ...overlayInspector,
     {
       group: 'Image',
       inputs: [
         {
-          helpText: '<p>Max width: 560px</p>',
+          helpText: '<p>Recommended with: max 560px</p>',
           label: 'Mobile Image',
           name: 'mobileImage',
           type: 'image',
         },
         {
-          helpText: '<p>Max width: 2000px</p>',
+          helpText: '<p>Recommended width: max 2000px</p>',
           label: 'Desktop Image',
           name: 'desktopImage',
           type: 'image',
@@ -172,7 +129,6 @@ export const schema: HydrogenComponentSchema = {
     },
   ],
   presets: {
-    backgroundFit: 'cover',
     children: [
       {
         color: '#fff',

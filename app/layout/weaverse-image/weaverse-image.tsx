@@ -6,9 +6,15 @@ import type {VariantProps} from 'class-variance-authority';
 
 import {cva} from 'class-variance-authority';
 
-export type WeaverseImageProps = string | WeaverseImageType;
+import type {ShopifyImageProps} from '~/components/resources/shopify-image';
 
-export const parseWeaverseImage = (image: WeaverseImageProps) => {
+import {ArtDirectionImage} from '~/components/resources/art-direction-image';
+import {ShopifyImage} from '~/components/resources/shopify-image';
+import {cn} from '~/utils/helpers';
+
+export type WeaverseImage = string | WeaverseImageType;
+
+export const parseWeaverseImage = (image: WeaverseImage) => {
   return typeof image === 'string'
     ? {altText: 'Section background', url: image}
     : image;
@@ -43,33 +49,59 @@ export type WeaverseImageVariantsProps = VariantProps<
   typeof weaverseImageVariants
 >;
 
-export const WeaverseImage = () => {
-  return <img alt="Weaverse" src="/image.jpeg" />;
+export interface WeaverseImageProps
+  extends Omit<ShopifyImageProps, 'data'>,
+    WeaverseImageVariantsProps {
+  data: WeaverseImage;
+  mobileImage: WeaverseImage;
+}
+
+export const WeaverseImage = ({
+  backgroundFit,
+  backgroundPosition,
+  className,
+  data,
+  mobileImage,
+  ...props
+}: WeaverseImageProps) => {
+  if (data && mobileImage) {
+    const desktop = parseWeaverseImage(data);
+    const mobile = parseWeaverseImage(mobileImage);
+
+    return (
+      <ArtDirectionImage
+        className={cn(
+          weaverseImageVariants({backgroundFit, backgroundPosition, className}),
+        )}
+        data={desktop}
+        desktop={desktop}
+        mobile={mobile}
+        {...props}
+      />
+    );
+  }
+
+  const image = parseWeaverseImage(data);
+
+  return (
+    <ShopifyImage
+      className={weaverseImageVariants({
+        backgroundFit,
+        backgroundPosition,
+        className,
+      })}
+      data={image}
+      {...props}
+    />
+  );
 };
 
 export const weaverseImageInputs: InspectorGroup['inputs'] = [
-  {
-    configs: {
-      options: [
-        {label: 'Section', value: 'section'},
-        {label: 'Content', value: 'content'},
-      ],
-    },
-    defaultValue: 'section',
-    label: 'Background for',
-    name: 'backgroundFor',
-    type: 'select',
-  },
   {
     defaultValue: '',
     label: 'Background color',
     name: 'backgroundColor',
     type: 'color',
-  },
-  {
-    label: 'Background image',
-    name: 'backgroundImage',
-    type: 'image',
   },
   {
     condition: 'backgroundImage.ne.nil',

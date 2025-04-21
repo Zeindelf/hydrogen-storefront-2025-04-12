@@ -5,7 +5,7 @@ https://studio.weaverse.io/hydrogen/edit/{weaverse-project-id}
 https://studio.weaverse.io/hydrogen/edit/kfws2uydmm3p4ton5vljrgb0
 
 ### Hydrogen Custom
-https://studio.weaverse.io/hydrogen/edit/kfws2uydmm3p4ton5vljrgb0
+https://studio.weaverse.io/hydrogen/edit/qn6ewledsjl49ptbv1tnweeg
 
 ### Hydrogen Test Blank
-https://studio.weaverse.io/hydrogen/edit/qn6ewledsjl49ptbv1tnweeg
+https://studio.weaverse.io/hydrogen/edit/{weaverse-project-id}

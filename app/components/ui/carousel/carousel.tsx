@@ -395,7 +395,7 @@ export const Dots = React.forwardRef<
               aria-label={`Mostrando item ${idx + 1} de ${scrollSnaps.length}`}
               className={cn(
                 'h-2 w-2 ease-out duration-300 rounded-full opacity-60 bg-foreground/50',
-                {'w-6 bg-primary opacity-100': isActive},
+                {'w-6 bg-white opacity-100': isActive},
               )}
               onClick={() => scrollTo(idx)}
               tabIndex={isActive ? 0 : -1}
