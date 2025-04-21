@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import {Carousel} from '~/components/ui/carousel';
 import {Section} from '~/layout/section';
-import {carousel} from '~/layout/theme/carousel';
 import {cn} from '~/utils/helpers';
 
 const slideshowDotsVariants = cva(
