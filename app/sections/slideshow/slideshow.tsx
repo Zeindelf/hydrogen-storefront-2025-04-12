@@ -6,6 +6,8 @@ import type {
 import type {VariantProps} from 'class-variance-authority';
 
 import {cva} from 'class-variance-authority';
+import Autoplay from 'embla-carousel-autoplay';
+import Fade from 'embla-carousel-fade';
 import * as React from 'react';
 
 import {Carousel} from '~/components/ui/carousel';
@@ -46,6 +48,7 @@ export function Dots({className, dotsPosition}: SlideshowDotsProps) {
 export interface SlideshowProps
   extends HydrogenComponentProps,
     SlideshowDotsVariants {
+  autoplay: boolean;
   effect?: 'fade' | 'slide';
   loop: boolean;
   showArrows: boolean;
@@ -55,9 +58,11 @@ export interface SlideshowProps
 const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
   (
     {
+      autoplay,
       children = [],
       className,
       dotsPosition,
+      effect,
       loop,
       showArrows,
       showDots,
@@ -65,9 +70,17 @@ const Slideshow = React.forwardRef<HTMLDivElement, SlideshowProps>(
     },
     ref,
   ) => {
+    const plugins = React.useMemo(() => {
+      const arrPlugins = [];
+
+      if (autoplay) arrPlugins.push(Autoplay());
+      if (effect === 'fade') arrPlugins.push(Fade());
+      return arrPlugins;
+    }, [autoplay, effect]);
+
     return (
       <Section className={cn('group h-full', className)} ref={ref} {...props}>
-        <Carousel.Root opts={{loop}}>
+        <Carousel.Root opts={{loop}} plugins={plugins}>
           {showArrows && (
             <Carousel.Previous
               ariaLabel="Imagem anterior"
@@ -118,6 +131,12 @@ export const slideshowInputs: InspectorGroup['inputs'] = [
     defaultValue: true,
     label: 'Loop',
     name: 'loop',
+    type: 'switch',
+  },
+  {
+    defaultValue: false,
+    label: 'Autoplay',
+    name: 'autoplay',
     type: 'switch',
   },
 ];

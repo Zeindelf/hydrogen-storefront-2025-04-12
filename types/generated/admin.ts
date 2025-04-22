@@ -52105,7 +52105,10 @@ export type ShopPayInstallmentsPaymentDetails = BasePaymentDetails & {
 /** The billing plan of the shop. */
 export type ShopPlan = {
   __typename?: 'ShopPlan';
-  /** The name of the shop's billing plan. */
+  /**
+   * The name of the shop's billing plan.
+   * @deprecated Use `publicDisplayName` instead.
+   */
   displayName: Scalars['String']['output'];
   /** Whether the shop is a partner development shop for testing purposes. */
   partnerDevelopment: Scalars['Boolean']['output'];
